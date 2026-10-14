@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorias | JAP Import</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+    }
+
+    header {
+      background: #171717;
+      color: white;
+      padding: 22px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    header span {
+      color: #e0b457;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      border: 1px solid #777;
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    .intro {
+      text-align: center;
+      padding: 38px 18px 25px;
+    }
+
+    .intro h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      color: #666;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 10px 18px 45px;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .category {
+      border: 1px solid #eee;
+      border-radius: 14px;
+      background: white;
+      padding: 25px 12px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .category:hover,
+    .category.active {
+      border-color: #c59b45;
+      background: #fff8e9;
+      transform: translateY(-3px);
+    }
+
+    .emoji {
+      display: block;
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .category h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .category p {
+      margin: 0;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .products-section {
+      margin-top: 40px;
+      scroll-margin-top: 20px;
+    }
+
+    .products-section h2 {
+      font-size: 25px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 145px;
+      background: #efede7;
+      display: grid;
+      place-items: center;
+      font-size: 55px;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .price {
+      font-size: 19px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .buy {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #191919;
+      color: white;
+      border-radius: 8px;
+      padding: 11px;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 12px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: #171717;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+
+    footer p {
+      color: #ccc;
+      font-size: 13px;
+    }
+
+    @media (max-width: 700px) {
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .intro h2 {
+        font-size: 25px;
+      }
+
+      header h1 {
+        font-size: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>JAP <span>IMPORT</span></h1>
+  <a href="index.html">← Página inicial</a>
+</header>
+
+<section class="intro">
+  <h2>Nossas categorias</h2>
+  <p>Escolha uma categoria e descubra os produtos disponíveis na nossa loja.</p>
+</section>
+
+<main>
+  <section class="categories" id="categories"></section>
+
+  <section class="products-section" id="products-section">
+    <h2 id="category-title">Todos os produtos</h2>
+    <div class="products" id="products"></div>
+  </section>
+</main>
+
+<footer>
+  <strong>JAP IMPORT</strong>
+  <p>Produtos importados para você.</p>
+  <p>© <span id="year"></span> JAP Import</p>
+</footer>
+
+<script>
+  // Cadastre aqui os produtos reais da sua loja.
+  // O campo imagem pode ficar vazio enquanto você não tiver fotos.
+
+  const products = [
+    {
+      nome: "Perfume Importado",
+      categoria: "Perfumes",
+      preco: 149.90,
+      emoji: "🌸",
+      imagem: ""
+    },
+    {
+      nome: "Fone Bluetooth",
+      categoria: "Eletrônicos",
+      preco: 89.90,
+      emoji: "🎧",
+      imagem: ""
+    },
+    {
+      nome: "Óculos de Sol",
+      categoria: "Acessórios",
+      preco: 59.90,
+      emoji: "🕶️",
+      imagem: ""
+    },
+    {
+      nome: "Kit de Beleza",
+      categoria: "Beleza",
+      preco: 69.90,
+      emoji: "💄",
+      imagem: ""
+    },
+    {
+      nome: "Relógio Moderno",
+      categoria: "Relógios",
+      preco: 99.90,
+      emoji: "⌚",
+      imagem: ""
+    },
+    {
+      nome: "Camiseta Casual",
+      categoria: "Roupas",
+      preco: 49.90,
+      emoji: "👕",
+      imagem: ""
+    },
+    {
+      nome: "Bolsa Casual",
+      categoria: "Acessórios",
+      preco: 119.90,
+      emoji: "👜",
+      imagem: ""
+    },
+    {
+      nome: "Caixa de Som",
+      categoria: "Eletrônicos",
+      preco: 79.90,
+      emoji: "🔊",
+      imagem: ""
+    },
+    {
+      nome: "Organizador para Casa",
+      categoria: "Casa",
+      preco: 39.90,
+      emoji: "🏠",
+      imagem: ""
+    }
+  ];
+
+  const categories = [
+    { nome: "Todas", emoji: "🛍️" },
+    { nome: "Perfumes", emoji: "🌸" },
+    { nome: "Eletrônicos", emoji: "🎧" },
+    { nome: "Acessórios", emoji: "👜" },
+    { nome: "Beleza", emoji: "💄" },
+    { nome: "Relógios", emoji: "⌚" },
+    { nome: "Roupas", emoji: "👕" },
+    { nome: "Casa", emoji: "🏠" }
+  ];
+
+  let selected = "Todas";
+
+  function money(value) {
+    return value.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    });
+  }
+
+  function renderCategories() {
+    document.getElementById("categories").innerHTML =
+      categories.map(category => {
+        const count = category.nome === "Todas"
+          ? products.length
+          : products.filter(p => p.categoria === category.nome).length;
+
+        return `
+          <button
+            class="category ${selected === category.nome ? "active" : ""}"
+            onclick="selectCategory('${category.nome}')"
+          >
+            <span class="emoji">${category.emoji}</span>
+            <h3>${category.nome}</h3>
+            <p>${count} produto(s)</p>
+          </button>
+        `;
+      }).join("");
+  }
+
+  function selectCategory(name) {
+    selected = name;
+    renderCategories();
+    renderProducts();
+
+    document.getElementById("products-section")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderProducts() {
+    const list = selected === "Todas"
+      ? products
+      : products.filter(p => p.categoria === selected);
+
+    document.getElementById("category-title").textContent =
+      selected === "Todas" ? "Todos os produtos" : selected;
+
+    document.getElementById("products").innerHTML = list.length
+      ? list.map(p => `
+          <article class="product">
+            <div class="product-image">
+              ${p.imagem
+                ? `<img src="${p.imagem}" alt="${p.nome}" loading="lazy">`
+                : p.emoji}
+            </div>
+            <div class="product-info">
+              <h3>${p.nome}</h3>
+              <div class="price">${money(p.preco)}</div>
+              <a class="buy" href="index.html">
+                Voltar à loja
+              </a>
+            </div>
+          </article>
+        `).join("")
+      : `<div class="empty">
+          Ainda não há produtos nesta categoria.<br>
+          Adicione produtos à lista no código para exibi-los aqui.
+        </div>`;
+  }
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  renderCategories();
+  renderProducts();
+</script>
+
+</body>
+</html>
