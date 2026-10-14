@@ -9,8 +9,8 @@
 
 <style>
 :root {
-  --bg:#0c0c1c;
-  --panel:#17172f;
+  --bg:#080b1b;
+  --panel:#141832;
   --purple:#873cff;
   --blue:#287bff;
   --text:#f8f8ff;
@@ -29,9 +29,9 @@ button{
 }
 button:hover{filter:brightness(1.15)}
 header{
-  padding:18px 5%;display:flex;justify-content:space-between;
+  padding:16px 5%;display:flex;justify-content:space-between;
   align-items:center;gap:12px;flex-wrap:wrap;
-  background:#111128;border-bottom:1px solid #302454;
+  background:#10132c;border-bottom:1px solid #302454;
   position:sticky;top:0;z-index:10
 }
 .logo{font-size:25px;font-weight:900;color:#a98aff}
@@ -42,21 +42,21 @@ input{
   padding:12px;border-radius:10px;max-width:100%
 }
 .hero{
-  padding:60px 7%;text-align:center;
-  background:radial-gradient(ellipse at top,#36206b,#12122c 70%)
+  padding:55px 6%;text-align:center;
+  background:radial-gradient(ellipse at top,#392071,#10152f 72%)
 }
 .hero h1{font-size:clamp(32px,5vw,55px);margin:12px 0}
 .hero p,.muted{color:var(--muted);line-height:1.6}
 .hero strong{color:#bba5ff}
-main{padding:25px 5%}
+main{padding:24px 4%}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
 .filters button{background:#252543}
 .filters button.active{background:linear-gradient(110deg,var(--purple),var(--blue))}
 .section-title{margin:28px 0 8px}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:16px
+  grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
+  gap:14px
 }
 .card{
   background:var(--panel);border:1px solid #292949;
@@ -64,22 +64,27 @@ main{padding:25px 5%}
 }
 .card:hover{transform:translateY(-3px);border-color:#7651dc}
 .card img{
-  width:100%;height:175px;object-fit:cover;
-  background:#22223d
+  width:100%;height:165px;object-fit:cover;background:#22223d
 }
-.card-content{padding:13px}
+.card-content{padding:12px}
 .tag{color:#bba5ff;font-size:11px;text-transform:uppercase}
-.card h3{font-size:15px;line-height:1.4;min-height:38px}
-.price{font-size:22px;font-weight:bold;color:#76b5ff}
+.card h3{font-size:14px;line-height:1.45;min-height:39px}
+.price{font-size:21px;font-weight:bold;color:#76b5ff}
+.price-note{font-size:11px;color:#b6b6d0}
 .stock{font-size:12px;color:#9edfc0}
 .card button{width:100%;margin-top:8px}
 .featured-section{
-  margin:28px 0 38px;padding:20px;
+  margin:24px 0 35px;padding:18px;
   border:1px solid #5937a5;border-radius:18px;
-  background:linear-gradient(135deg,#20133f,#101d3d)
+  background:linear-gradient(135deg,#241343,#101d3d)
 }
 .featured-section h2{color:#c6a8ff;margin-top:0}
 .featured-section .card{box-shadow:0 0 14px #6a37ff18}
+.promo-label{
+  display:inline-block;background:#6733ef;color:white;
+  padding:5px 8px;border-radius:7px;font-size:10px;
+  font-weight:bold;margin-bottom:5px
+}
 .cart-panel{
   background:var(--panel);border:1px solid #39335e;
   padding:20px;border-radius:16px;margin:30px 0
@@ -94,19 +99,19 @@ main{padding:25px 5%}
 .empty{padding:25px;text-align:center;color:var(--muted)}
 .notice{font-size:12px;color:#aaaac5;line-height:1.6;margin:24px 0}
 footer{
-  padding:30px 5%;text-align:center;background:#111128;
+  padding:30px 5%;text-align:center;background:#10132c;
   color:var(--muted);font-size:13px;line-height:1.8
 }
 @media(max-width:550px){
   header{position:static}
-  .hero{padding:40px 5%}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .card img{height:135px}
-  .card-content{padding:9px}
-  .card h3{font-size:13px}
-  .price{font-size:17px}
-  .card button{font-size:11px;padding:10px 5px}
-  .featured-section{padding:12px}
+  .hero{padding:38px 5%}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .card img{height:125px}
+  .card-content{padding:8px}
+  .card h3{font-size:12px}
+  .price{font-size:16px}
+  .card button{font-size:11px;padding:10px 4px}
+  .featured-section{padding:10px}
 }
 </style>
 </head>
@@ -122,20 +127,28 @@ footer{
 </header>
 
 <section class="hero">
-  <p><strong>PERFUMES • TECNOLOGIA • ESTILO</strong></p>
+  <p><strong>PERFUMES • BODY SPLASH • TECNOLOGIA</strong></p>
   <h1>JAPA IMPORT</h1>
-  <p>Encontre seu perfume favorito e descubra nossas novidades.</p>
+  <p>Fragrâncias famosas e produtos para o seu estilo.</p>
   <button onclick="filterCategory('Perfumes masculinos')">
-    Ver perfumes masculinos
+    🔥 Perfumes masculinos
   </button>
-  <button onclick="filterCategory('Todos')">Explorar produtos</button>
+  <button onclick="filterCategory('Body splash feminino')">
+    🌸 Body splash feminino
+  </button>
 </section>
 
 <main>
   <section class="featured-section">
-    <h2>🔥 PERFUMES MAIS FAMOSOS</h2>
-    <p class="muted">Clássicos e fragrâncias desejadas em destaque.</p>
-    <div class="grid" id="featured-products"></div>
+    <h2>🔥 PERFUMES MASCULINOS EM DESTAQUE</h2>
+    <p class="muted">Malbec, 212 VIP, 1 Million e outros favoritos.</p>
+    <div class="grid" id="featured-men"></div>
+  </section>
+
+  <section class="featured-section">
+    <h2>🌸 BODY SPLASH FEMININO EM DESTAQUE</h2>
+    <p class="muted">Fragrâncias leves, doces e florais para o dia a dia.</p>
+    <div class="grid" id="featured-body"></div>
   </section>
 
   <h2 class="section-title">Explore nossas categorias</h2>
@@ -159,20 +172,22 @@ footer{
   </section>
 
   <p class="notice">
-    Preços de referência ilustrativos, sujeitos a alteração.
-    Imagens ilustrativas. Confirme disponibilidade, preço, volume,
-    autenticidade, frete e garantia antes de concluir a venda.
+    Os preços são referências para a vitrine. Alguns foram calculados
+    com acréscimo de 25% sobre preços consultados no Compras Paraguai.
+    Os demais são valores sugeridos e não cotações verificadas.
+    Confirme disponibilidade, volume, autenticidade, frete e garantia.
+    Imagens ilustrativas; podem não corresponder à embalagem exata.
   </p>
 </main>
 
 <footer>
   <strong>JAPA IMPORT</strong><br>
-  Perfumes importados, celulares, eletrônicos e eletrodomésticos.<br>
+  Perfumes, body splash, celulares, eletrônicos e eletrodomésticos.<br>
   © <span id="year"></span> JAPA IMPORT.
 </footer>
 
 <script>
-// CONFIGURE SEU WHATSAPP COM DDI 55 + DDD + NÚMERO.
+// Configure seu WhatsApp com DDI + DDD + número.
 const WHATSAPP = "5511999999999";
 
 // Imagens ilustrativas por categoria.
@@ -181,6 +196,8 @@ const images = {
     "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80",
   "Perfumes femininos":
     "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80",
+  "Body splash feminino":
+    "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80",
   "Celulares":
     "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
   "Eletrônicos":
@@ -189,99 +206,137 @@ const images = {
     "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=600&q=80"
 };
 
+/*
+  Preços em reais.
+  Preços de referência do Compras Paraguai + 25%:
+  212 VIP Men: R$304,80 -> R$381,00
+  212 VIP Black: R$325,12 -> R$406,40
+  1 Million: R$238,76 -> R$298,45
+  Dior Sauvage: R$431,80 -> R$539,75
+  Montblanc Explorer: R$220,98 -> R$276,23
+  Victoria's Secret Body Splash: R$61,08 -> R$76,35
+  Os demais preços são estimativas editáveis.
+*/
 const catalog = {
   "Perfumes masculinos": [
-    ["Malbec O Boticário 100ml",199],
-    ["Malbec Gold 100ml",229],
-    ["Malbec Black 100ml",229],
-    ["Malbec Bleu 100ml",219],
-    ["Carolina Herrera 212 VIP Men 100ml",549],
-    ["Carolina Herrera 212 Men NYC 100ml",599],
-    ["Carolina Herrera 212 VIP Black 100ml",649],
-    ["Paco Rabanne 1 Million 100ml",579],
-    ["Paco Rabanne Invictus 100ml",579],
-    ["Paco Rabanne Phantom 100ml",599],
-    ["Dior Sauvage EDT 100ml",699],
-    ["Bleu de Chanel EDP 100ml",999],
-    ["Versace Eros EDT 100ml",499],
-    ["Armani Acqua di Giò 100ml",649],
-    ["Jean Paul Gaultier Le Male 125ml",699],
-    ["Azzaro The Most Wanted 100ml",699],
-    ["Hugo Boss Bottled 100ml",499],
-    ["Polo Blue Ralph Lauren 125ml",499],
-    ["Quasar Classic O Boticário 100ml",159],
-    ["Zaad O Boticário 95ml",219],
-    ["Kaiak Clássico Natura 100ml",149],
-    ["Natura Essencial Oud 100ml",249],
-    ["Ferrari Black 125ml",199],
-    ["Yves Saint Laurent Y EDP 100ml",799],
-    ["Montblanc Explorer 100ml",399]
+    ["Carolina Herrera 212 VIP Men EDT 100ml",381.00],
+    ["Carolina Herrera 212 VIP Black EDP 100ml",406.40],
+    ["Paco Rabanne 1 Million EDT 100ml",298.45],
+    ["Dior Sauvage EDT 100ml",539.75],
+    ["Montblanc Explorer EDP 100ml",276.23],
+    ["Malbec O Boticário 100ml",199.00],
+    ["Malbec Gold 100ml",229.00],
+    ["Malbec Black 100ml",229.00],
+    ["Malbec Bleu 100ml",219.00],
+    ["Carolina Herrera 212 Men NYC EDT 100ml",349.00],
+    ["Paco Rabanne Invictus 100ml",499.00],
+    ["Paco Rabanne Phantom 100ml",499.00],
+    ["Bleu de Chanel EDP 100ml",850.00],
+    ["Versace Eros EDT 100ml",399.00],
+    ["Armani Acqua di Giò EDT 100ml",499.00],
+    ["Jean Paul Gaultier Le Male 125ml",549.00],
+    ["Azzaro The Most Wanted 100ml",599.00],
+    ["Hugo Boss Bottled 100ml",399.00],
+    ["Polo Blue Ralph Lauren 125ml",399.00],
+    ["Quasar Classic O Boticário 100ml",159.00],
+    ["Zaad O Boticário 95ml",219.00],
+    ["Kaiak Clássico Natura 100ml",149.00],
+    ["Natura Essencial Oud 100ml",249.00],
+    ["Ferrari Black 125ml",199.00],
+    ["Yves Saint Laurent Y EDP 100ml",699.00],
+    ["Afnan 9 PM EDP 100ml",279.00],
+    ["Lattafa Asad EDP 100ml",199.00],
+    ["Armaf Club de Nuit Intense Man 105ml",299.00]
   ],
 
   "Perfumes femininos": [
-    ["Carolina Herrera Good Girl 80ml",799],
-    ["Dior J'adore EDP 100ml",899],
-    ["Lancôme La Vie Est Belle 75ml",799],
-    ["YSL Libre EDP 90ml",899],
-    ["Paco Rabanne Lady Million 80ml",699],
-    ["Versace Bright Crystal 90ml",499],
-    ["Armani My Way 90ml",799],
-    ["Valentino Donna Born in Roma 100ml",899],
-    ["Jean Paul Gaultier Scandal 80ml",699],
-    ["Burberry Her EDP 100ml",799],
-    ["Marc Jacobs Daisy 100ml",699],
-    ["Mugler Alien 90ml",799]
+    ["Carolina Herrera Good Girl 80ml",499.00],
+    ["Dior J'adore EDP 100ml",699.00],
+    ["Lancôme La Vie Est Belle 75ml",599.00],
+    ["YSL Libre EDP 90ml",699.00],
+    ["Paco Rabanne Lady Million 80ml",499.00],
+    ["Versace Bright Crystal 90ml",399.00],
+    ["Armani My Way 90ml",599.00],
+    ["Valentino Donna Born in Roma 100ml",699.00],
+    ["Jean Paul Gaultier Scandal 80ml",549.00],
+    ["Burberry Her EDP 100ml",599.00],
+    ["Marc Jacobs Daisy 100ml",499.00],
+    ["Mugler Alien 90ml",599.00],
+    ["Carolina Herrera 212 VIP Rosé 80ml",476.50],
+    ["Paco Rabanne Fame 80ml",599.00],
+    ["Miss Dior EDP 100ml",699.00]
+  ],
+
+  "Body splash feminino": [
+    ["Victoria's Secret Tidal Shimmer 250ml",76.35],
+    ["Victoria's Secret Bare Vanilla 250ml",89.00],
+    ["Victoria's Secret Love Spell 250ml",89.00],
+    ["Victoria's Secret Pure Seduction 250ml",89.00],
+    ["Victoria's Secret Velvet Petals 250ml",89.00],
+    ["Victoria's Secret Aqua Kiss 250ml",89.00],
+    ["Victoria's Secret Coconut Passion 250ml",89.00],
+    ["VS Secrets Romance Coconut Dream 250ml",38.18],
+    ["VS Secrets Romance Dew Kiss 250ml",38.18],
+    ["VS Secrets Romance Kiss Spell 250ml",38.18],
+    ["Lattafa Layaan Body Mist 250ml",50.90],
+    ["Bath & Body Works Japanese Cherry Blossom",99.00],
+    ["Bath & Body Works A Thousand Wishes",99.00],
+    ["Bath & Body Works Into the Night",99.00],
+    ["O Boticário Cuide-se Bem Deleite Body Splash",69.90],
+    ["O Boticário Nuvem Body Splash",69.90],
+    ["Natura Tododia Ameixa e Flor de Baunilha",69.90],
+    ["Natura Tododia Algodão",69.90]
   ],
 
   "Celulares": [
-    ["Apple iPhone 16 128GB",3999],
-    ["Apple iPhone 16 Pro 256GB",6499],
-    ["Apple iPhone 15 128GB",3299],
-    ["Samsung Galaxy S25 256GB",4499],
-    ["Samsung Galaxy A56 256GB",2299],
-    ["Samsung Galaxy A36 128GB",1799],
-    ["Samsung Galaxy S24 FE 256GB",3299],
-    ["Motorola Edge 50 Neo 256GB",1999],
-    ["Motorola Moto G75 256GB",1499],
-    ["Xiaomi Redmi Note 14 256GB",1399],
-    ["Xiaomi Poco X7 Pro 256GB",2499],
-    ["Xiaomi Redmi 14C 256GB",899]
+    ["Apple iPhone 16 128GB",3999.00],
+    ["Apple iPhone 16 Pro 256GB",6499.00],
+    ["Apple iPhone 15 128GB",3299.00],
+    ["Samsung Galaxy S25 256GB",4499.00],
+    ["Samsung Galaxy A56 256GB",2299.00],
+    ["Samsung Galaxy A36 128GB",1799.00],
+    ["Samsung Galaxy S24 FE 256GB",3299.00],
+    ["Motorola Edge 50 Neo 256GB",1999.00],
+    ["Motorola Moto G75 256GB",1499.00],
+    ["Xiaomi Redmi Note 14 256GB",1399.00],
+    ["Xiaomi Poco X7 Pro 256GB",2499.00],
+    ["Xiaomi Redmi 14C 256GB",899.00]
   ],
 
   "Eletrônicos": [
-    ["Fone Bluetooth JBL Tune 520BT",249],
-    ["Fone JBL Wave Buds",299],
-    ["Apple AirPods 4",999],
-    ["Samsung Galaxy Buds FE",499],
-    ["Smartwatch Samsung Galaxy Watch",999],
-    ["Apple Watch SE",1799],
-    ["Caixa JBL Flip 6",699],
-    ["Caixa JBL Go 4",299],
-    ["Tablet Samsung Galaxy Tab A9",999],
-    ["Kindle 11ª geração",599],
-    ["Controle sem fio para games",299],
-    ["Carregador portátil 20000mAh",199]
+    ["JBL Tune 520BT",249.00],
+    ["JBL Wave Buds",299.00],
+    ["Apple AirPods 4",999.00],
+    ["Samsung Galaxy Buds FE",499.00],
+    ["Samsung Galaxy Watch",999.00],
+    ["Apple Watch SE",1799.00],
+    ["JBL Flip 6",699.00],
+    ["JBL Go 4",299.00],
+    ["Samsung Galaxy Tab A9",999.00],
+    ["Kindle 11ª geração",599.00],
+    ["Controle sem fio para games",299.00],
+    ["Carregador portátil 20000mAh",199.00]
   ],
 
   "Eletrodomésticos": [
-    ["Air Fryer 4L",299],
-    ["Air Fryer 5,5L",449],
-    ["Liquidificador 1200W",199],
-    ["Batedeira planetária",399],
-    ["Cafeteira elétrica",179],
-    ["Máquina de café espresso",699],
-    ["Aspirador de pó vertical",299],
-    ["Ventilador de coluna",249],
-    ["Micro-ondas 20L",599],
-    ["Panela elétrica de arroz",149],
-    ["Sanduicheira elétrica",99],
-    ["Purificador de água",499]
+    ["Air Fryer 4L",299.00],
+    ["Air Fryer 5,5L",449.00],
+    ["Liquidificador 1200W",199.00],
+    ["Batedeira planetária",399.00],
+    ["Cafeteira elétrica",179.00],
+    ["Máquina de café espresso",699.00],
+    ["Aspirador de pó vertical",299.00],
+    ["Ventilador de coluna",249.00],
+    ["Micro-ondas 20L",599.00],
+    ["Panela elétrica de arroz",149.00],
+    ["Sanduicheira elétrica",99.00],
+    ["Purificador de água",499.00]
   ]
 };
 
-const categories = ["Todos", ...Object.keys(catalog)];
+const categories = ["Todos",...Object.keys(catalog)];
 
-const money = value => value.toLocaleString("pt-BR", {
+const money = value => value.toLocaleString("pt-BR",{
   style:"currency",currency:"BRL"
 });
 
@@ -295,15 +350,24 @@ const allProducts = Object.entries(catalog).flatMap(([category,list]) =>
   }))
 );
 
-const featuredNames = [
+const featuredMen = [
+  "Carolina Herrera 212 VIP Men EDT 100ml",
+  "Carolina Herrera 212 VIP Black EDP 100ml",
+  "Paco Rabanne 1 Million EDT 100ml",
   "Malbec O Boticário 100ml",
-  "Carolina Herrera 212 VIP Men 100ml",
-  "Paco Rabanne 1 Million 100ml",
   "Dior Sauvage EDT 100ml",
-  "Bleu de Chanel EDP 100ml",
   "Paco Rabanne Invictus 100ml",
-  "Versace Eros EDT 100ml",
-  "Carolina Herrera 212 VIP Black 100ml"
+  "Bleu de Chanel EDP 100ml",
+  "Montblanc Explorer EDP 100ml"
+];
+
+const featuredBody = [
+  "Victoria's Secret Tidal Shimmer 250ml",
+  "Victoria's Secret Bare Vanilla 250ml",
+  "Victoria's Secret Love Spell 250ml",
+  "Victoria's Secret Pure Seduction 250ml",
+  "Bath & Body Works Japanese Cherry Blossom",
+  "Bath & Body Works A Thousand Wishes"
 ];
 
 let cart = {};
@@ -311,27 +375,28 @@ let selectedCategory = "Todos";
 
 function loadCart() {
   try {
-    if (location.hash.startsWith("#carrinho=")) {
+    if(location.hash.startsWith("#carrinho=")) {
       const data = JSON.parse(
         decodeURIComponent(location.hash.slice(10))
       );
       data.forEach(id => {
-        if (allProducts.some(p => p.id === id)) {
-          cart[id] = (cart[id] || 0) + 1;
+        if(allProducts.some(p => p.id===id)) {
+          cart[id]=(cart[id]||0)+1;
         }
       });
       history.replaceState(null,"",location.pathname+location.search);
       saveCart();
       return;
     }
-    cart = JSON.parse(localStorage.getItem("japa-cart") || "{}");
+
+    cart=JSON.parse(localStorage.getItem("japa-cart")||"{}");
   } catch(e) {
-    cart = {};
+    cart={};
   }
 
-  Object.keys(cart).forEach(id => {
-    if (!allProducts.some(p => p.id === id) ||
-        !Number.isInteger(cart[id]) || cart[id] <= 0) {
+  Object.keys(cart).forEach(id=>{
+    if(!allProducts.some(p=>p.id===id) ||
+       !Number.isInteger(cart[id]) || cart[id]<=0) {
       delete cart[id];
     }
   });
@@ -344,92 +409,92 @@ function saveCart() {
   updateCart();
 }
 
+function renderCard(p,label) {
+  return `
+    <article class="card">
+      <img src="${p.image}" alt="${p.name}" loading="lazy">
+      <div class="card-content">
+        <span class="promo-label">${label || p.category}</span>
+        <h3>${p.name}</h3>
+        <div class="price">${money(p.price)}</div>
+        <p class="stock">Consulte disponibilidade</p>
+        <button onclick="addToCart('${p.id}')">
+          Adicionar ao carrinho
+        </button>
+      </div>
+    </article>
+  `;
+}
+
+function renderFeatured() {
+  const men=featuredMen
+    .map(name=>allProducts.find(p=>p.name===name))
+    .filter(Boolean);
+
+  const body=featuredBody
+    .map(name=>allProducts.find(p=>p.name===name))
+    .filter(Boolean);
+
+  document.getElementById("featured-men").innerHTML =
+    men.map(p=>renderCard(p,"🔥 MAIS PROCURADO")).join("");
+
+  document.getElementById("featured-body").innerHTML =
+    body.map(p=>renderCard(p,"🌸 DESTAQUE FEMININO")).join("");
+}
+
 function renderFilters() {
-  document.getElementById("filters").innerHTML = categories.map(category =>
+  document.getElementById("filters").innerHTML=categories.map(category=>
     `<button class="${category===selectedCategory?"active":""}"
       onclick="filterCategory('${category}')">${category}</button>`
   ).join("");
 }
 
-function renderFeatured() {
-  const featured = featuredNames
-    .map(name => allProducts.find(p => p.name === name))
-    .filter(Boolean);
-
-  document.getElementById("featured-products").innerHTML =
-    featured.map(p => `
-      <article class="card">
-        <img src="${p.image}" alt="${p.name}" loading="lazy">
-        <div class="card-content">
-          <span class="tag">🔥 MAIS FAMOSO</span>
-          <h3>${p.name}</h3>
-          <div class="price">${money(p.price)}</div>
-          <p class="stock">Consulte disponibilidade</p>
-          <button onclick="addToCart('${p.id}')">
-            Adicionar ao carrinho
-          </button>
-        </div>
-      </article>
-    `).join("");
-}
-
 function filterCategory(category) {
-  selectedCategory = category;
+  selectedCategory=category;
   renderFilters();
   renderProducts();
+
   document.getElementById("catalog-title").textContent =
-    category==="Todos" ? "Todos os produtos" : category;
+    category==="Todos"?"Todos os produtos":category;
+
   document.getElementById("products").scrollIntoView({
     behavior:"smooth",block:"start"
   });
 }
 
 function renderProducts() {
-  const query = document.getElementById("search").value
+  const query=document.getElementById("search").value
     .trim().toLocaleLowerCase("pt-BR");
 
-  const filtered = allProducts.filter(p =>
-    (selectedCategory==="Todos" || p.category===selectedCategory) &&
-    (p.name.toLocaleLowerCase("pt-BR").includes(query) ||
+  const filtered=allProducts.filter(p=>
+    (selectedCategory==="Todos"||p.category===selectedCategory)&&
+    (p.name.toLocaleLowerCase("pt-BR").includes(query)||
      p.category.toLocaleLowerCase("pt-BR").includes(query))
   );
 
   document.getElementById("results").textContent =
     filtered.length+" produto(s) encontrado(s)";
 
-  document.getElementById("products").innerHTML = filtered.length
-    ? filtered.map(p => `
-      <article class="card">
-        <img src="${p.image}" alt="${p.name}" loading="lazy">
-        <div class="card-content">
-          <span class="tag">${p.category}</span>
-          <h3>${p.name}</h3>
-          <div class="price">${money(p.price)}</div>
-          <p class="stock">Consulte disponibilidade</p>
-          <button onclick="addToCart('${p.id}')">
-            Adicionar ao carrinho
-          </button>
-        </div>
-      </article>
-    `).join("")
-    : '<div class="empty">Nenhum produto encontrado.</div>';
+  document.getElementById("products").innerHTML=filtered.length
+    ?filtered.map(p=>renderCard(p)).join("")
+    :'<div class="empty">Nenhum produto encontrado.</div>';
 }
 
 function addToCart(id) {
-  cart[id] = (cart[id] || 0)+1;
+  cart[id]=(cart[id]||0)+1;
   saveCart();
 }
 
 function updateCart() {
-  const items = allProducts.filter(p => cart[p.id]>0);
-  const count = items.reduce((s,p) => s+cart[p.id],0);
-  const total = items.reduce((s,p) => s+p.price*cart[p.id],0);
+  const items=allProducts.filter(p=>cart[p.id]>0);
+  const count=items.reduce((s,p)=>s+cart[p.id],0);
+  const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);
 
-  document.getElementById("count").textContent = count;
-  document.getElementById("total").textContent = money(total);
+  document.getElementById("count").textContent=count;
+  document.getElementById("total").textContent=money(total);
 
-  document.getElementById("cart-items").innerHTML = items.length
-    ? items.map(p => `
+  document.getElementById("cart-items").innerHTML=items.length
+    ?items.map(p=>`
       <div class="cart-row">
         <div>
           <strong>${p.name}</strong><br>
@@ -441,12 +506,12 @@ function updateCart() {
         </div>
       </div>
     `).join("")
-    : '<p class="empty">Seu carrinho está vazio.</p>';
+    :'<p class="empty">Seu carrinho está vazio.</p>';
 }
 
 function changeQty(id,amount) {
-  cart[id] = (cart[id] || 0)+amount;
-  if (cart[id]<=0) delete cart[id];
+  cart[id]=(cart[id]||0)+amount;
+  if(cart[id]<=0) delete cart[id];
   saveCart();
 }
 
@@ -455,32 +520,33 @@ function showCart() {
 }
 
 function clearCart() {
-  if (!Object.keys(cart).length) return;
-  if (confirm("Deseja limpar o carrinho?")) {
-    cart = {};
+  if(!Object.keys(cart).length) return;
+  if(confirm("Deseja limpar o carrinho?")) {
+    cart={};
     saveCart();
-    document.getElementById("share-message").textContent = "";
+    document.getElementById("share-message").textContent="";
   }
 }
 
 function checkout() {
-  const items = allProducts.filter(p => cart[p.id]>0);
-  if (!items.length) {
+  const items=allProducts.filter(p=>cart[p.id]>0);
+
+  if(!items.length) {
     alert("Adicione produtos ao carrinho primeiro.");
     return;
   }
 
-  if (WHATSAPP==="5511970218569") {
+  if(WHATSAPP==="5511999999999") {
     alert("Configure seu número de WhatsApp no código antes de receber pedidos.");
     return;
   }
 
-  const total = items.reduce((s,p) => s+p.price*cart[p.id],0);
-  const lines = items.map(p =>
+  const total=items.reduce((s,p)=>s+p.price*cart[p.id],0);
+  const lines=items.map(p=>
     `${cart[p.id]}x ${p.name} - ${money(p.price*cart[p.id])}`
   );
 
-  const message = "Olá! Quero fazer um pedido na JAPA IMPORT:\n\n"+
+  const message="Olá! Quero fazer um pedido na JAPA IMPORT:\n\n"+
     lines.join("\n")+"\n\nTotal estimado: "+money(total)+
     "\nPor favor, confirme disponibilidade, preços e frete.";
 
@@ -491,21 +557,21 @@ function checkout() {
 }
 
 async function shareCart() {
-  const ids = allProducts
-    .filter(p => cart[p.id]>0)
-    .flatMap(p => Array(cart[p.id]).fill(p.id));
+  const ids=allProducts
+    .filter(p=>cart[p.id]>0)
+    .flatMap(p=>Array(cart[p.id]).fill(p.id));
 
-  if (!ids.length) {
+  if(!ids.length) {
     alert("Adicione produtos antes de compartilhar.");
     return;
   }
 
-  const url = location.origin+location.pathname+
+  const url=location.origin+location.pathname+
     "#carrinho="+encodeURIComponent(JSON.stringify(ids));
 
   try {
     await navigator.clipboard.writeText(url);
-    document.getElementById("share-message").textContent =
+    document.getElementById("share-message").textContent=
       "Link copiado! Envie para a pessoa abrir o carrinho.";
   } catch(e) {
     prompt("Copie o link do carrinho:",url);
@@ -513,7 +579,7 @@ async function shareCart() {
 }
 
 document.getElementById("search").addEventListener("input",renderProducts);
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent=new Date().getFullYear();
 
 loadCart();
 renderFilters();
