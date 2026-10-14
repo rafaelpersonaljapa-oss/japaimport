@@ -3,609 +3,329 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JAPA IMPORT | Sua loja de importados</title>
-<meta name="description" content="JAPA IMPORT: perfumes, celulares, informática, games, eletrônicos, eletrodomésticos e muito mais.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAPA IMPORT | Loja de Importados</title>
 <style>
-:root {
-  --bg:#080d1c;
-  --panel:#111a31;
-  --panel2:#172342;
-  --purple:#8757ff;
-  --blue:#287bff;
-  --text:#f7f8ff;
-  --muted:#aeb9d4;
-  --green:#25d366;
-}
+:root{--bg:#080d1c;--card:#121d35;--purple:#8657ff;--blue:#287bff;--text:#fff;--muted:#b8c3df}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
-button,input,select{font:inherit}
-button{cursor:pointer}
-a{color:inherit}
-.topbar{background:#111b35;text-align:center;padding:9px;font-size:12px;color:#dce4ff}
-header{position:sticky;top:0;z-index:10;background:#0b1224ed;backdrop-filter:blur(14px);border-bottom:1px solid #263458}
-.header-inner{max-width:1400px;margin:auto;padding:15px 4%;display:flex;align-items:center;gap:18px;justify-content:space-between}
-.logo{font-size:25px;font-weight:900;letter-spacing:1px;white-space:nowrap}
-.logo span{color:#8d6bff}
-.search{flex:1;max-width:550px;display:flex;gap:8px}
-.search input{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #304166;background:#111b33;color:white;outline:none}
-.search input:focus{border-color:var(--purple)}
-.btn{border:0;border-radius:11px;padding:12px 16px;color:white;font-weight:bold;background:linear-gradient(110deg,var(--blue),var(--purple))}
-.cart-button{white-space:nowrap}
-.cart-count{background:white;color:#18203b;border-radius:50%;padding:3px 7px;margin-left:5px}
-nav{max-width:1400px;margin:auto;padding:0 4% 12px;display:flex;gap:9px;overflow-x:auto}
-nav button{flex-shrink:0;background:#16213c;border:1px solid #293a60;color:#dce4ff;padding:9px 13px;border-radius:30px}
-nav button.active,nav button:hover{background:linear-gradient(100deg,var(--blue),var(--purple));color:white}
-main{max-width:1400px;margin:auto;padding:25px 4% 60px}
-.hero{background:radial-gradient(circle at 80% 20%,#5d36b5 0,transparent 32%),linear-gradient(120deg,#122d62,#28164c 70%,#10152d);border:1px solid #443c82;border-radius:24px;padding:45px 6%;display:grid;grid-template-columns:1.3fr .7fr;align-items:center;gap:25px;overflow:hidden}
-.hero .eyebrow{color:#c8b8ff;font-weight:bold;text-transform:uppercase;letter-spacing:2px;font-size:12px}
-.hero h1{font-size:clamp(32px,5vw,58px);line-height:1.04;margin:14px 0}
-.hero p{color:#d5dcf7;line-height:1.7;max-width:620px}
-.hero-art{font-size:clamp(75px,12vw,145px);text-align:center;filter:drop-shadow(0 12px 24px #0008)}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.btn-outline{border:1px solid #8c8dff;background:#151d43;color:white;padding:12px 17px;border-radius:11px;font-weight:bold}
-.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0 34px}
-.benefit{padding:16px;background:var(--panel);border:1px solid #243253;border-radius:14px;color:#dce4ff;font-size:13px}
-.benefit strong{display:block;color:white;margin-bottom:5px;font-size:14px}
-.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:34px 0 18px}
-.section-title h2{font-size:25px;margin:0 0 6px}
-.section-title p{color:var(--muted);margin:0;font-size:13px}
-.section-title a{font-size:13px;color:#b7a5ff}
-.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.category-card{border:1px solid #29395e;border-radius:15px;background:linear-gradient(145deg,#172442,#11182d);padding:18px 10px;text-align:center;cursor:pointer;transition:.2s}
-.category-card:hover{transform:translateY(-4px);border-color:#9876ff}
-.category-card .emoji{font-size:32px;display:block;margin-bottom:9px}
-.category-card strong{font-size:12px;line-height:1.4}
-.feature-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:25px 0}
-.feature{padding:21px;border-radius:17px;background:linear-gradient(120deg,#192e57,#29194d);border:1px solid #3a4276}
-.feature span{font-size:28px}
-.feature h3{margin:10px 0 7px}
-.feature p{font-size:13px;color:#c2cce8;line-height:1.5}
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0}
-.toolbar select{background:#121d36;color:white;border:1px solid #304166;border-radius:10px;padding:10px}
-.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
-.product{background:var(--panel);border:1px solid #243253;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:.2s}
-.product:hover{transform:translateY(-3px);border-color:#5d64bb}
-.product-image{height:155px;background:linear-gradient(145deg,#1c2b4d,#302052);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.product-image img{width:100%;height:100%;object-fit:cover}
-.product-emoji{font-size:60px;filter:drop-shadow(0 8px 12px #0006)}
-.tag{position:absolute;top:10px;left:10px;background:#8c5cff;color:white;border-radius:7px;padding:5px 8px;font-size:10px;font-weight:bold}
-.product-info{padding:14px;display:flex;flex-direction:column;flex:1}
-.category-label{font-size:10px;color:#b6a5ff;text-transform:uppercase;letter-spacing:.6px}
-.product h3{font-size:14px;line-height:1.4;margin:8px 0;min-height:40px}
-.product-desc{font-size:11px;color:var(--muted);line-height:1.5;min-height:30px}
-.price{font-size:21px;font-weight:900;margin:12px 0 4px}
-.price-note{font-size:10px;color:#9fabc8;margin-bottom:12px}
-.product-actions{display:flex;gap:7px;margin-top:auto}
-.product-actions button,.product-actions a{flex:1;text-align:center;text-decoration:none;border-radius:9px;padding:10px 6px;font-size:11px;font-weight:bold}
-.add-btn{border:0;color:white;background:linear-gradient(110deg,var(--blue),var(--purple))}
-.source-btn{border:1px solid #3b4a6e;color:#d8e0f7;background:transparent}
-.empty{grid-column:1/-1;text-align:center;padding:50px 15px;color:var(--muted);background:var(--panel);border-radius:15px}
-.info-panel{background:#111a31;border:1px solid #29385b;border-radius:18px;padding:23px;margin-top:35px}
-.info-panel p{color:var(--muted);line-height:1.7;font-size:13px}
-footer{background:#060a14;border-top:1px solid #26314d;padding:30px 4%;color:var(--muted);font-size:12px}
-.footer-inner{max-width:1300px;margin:auto;display:flex;gap:25px;justify-content:space-between;flex-wrap:wrap}
-footer strong{color:white}
-.modal-backdrop{position:fixed;inset:0;background:#000b;z-index:30;display:none;justify-content:flex-end}
-.modal-backdrop.open{display:flex}
-.cart-panel{background:#10182c;border-left:1px solid #334267;width:min(470px,100%);height:100%;padding:23px;display:flex;flex-direction:column;overflow-y:auto}
-.cart-header{display:flex;justify-content:space-between;align-items:center}
-.cart-header h2{margin:0}
-.close-btn{background:#263352;border:0;color:white;border-radius:9px;padding:9px 12px}
-.cart-items{flex:1;margin:18px 0}
-.cart-item{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #293452}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#0b1224f5;padding:15px 4%;border-bottom:1px solid #2a3656}
+.header{max-width:1400px;margin:auto;display:flex;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:25px;font-weight:900;white-space:nowrap}.logo span{color:#9b7cff}
+.search{flex:1;display:flex;gap:8px;min-width:220px}
+input{width:100%;padding:13px;border:1px solid #354466;border-radius:10px;background:#111b33;color:white}
+button{cursor:pointer;border:0;border-radius:10px;padding:12px;color:white;font-weight:bold}
+.primary{background:linear-gradient(110deg,var(--blue),var(--purple))}
+header .cart{background:#202c4c;white-space:nowrap}
+nav{max-width:1400px;margin:14px auto 0;display:flex;gap:8px;overflow-x:auto}
+nav button{white-space:nowrap;background:#17223e;border:1px solid #2e3b5e}
+nav button.active{background:linear-gradient(110deg,var(--blue),var(--purple))}
+main{max-width:1400px;margin:auto;padding:25px 4% 55px}
+.hero{border:1px solid #484181;border-radius:22px;padding:40px;background:radial-gradient(circle at 85% 20%,#633cb5,transparent 35%),linear-gradient(120deg,#123267,#261542);display:flex;justify-content:space-between;align-items:center;gap:20px}
+.hero h1{font-size:clamp(32px,5vw,55px);margin:12px 0}.hero p{color:#d9e1ff;line-height:1.6;max-width:650px}
+.hero-art{font-size:90px}.section-title{margin:30px 0 15px}.section-title h2{margin:0 0 6px}.section-title p{color:var(--muted);font-size:13px;margin:0}
+.categories{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.category{background:var(--card);border:1px solid #2b3859;padding:17px 8px;border-radius:13px;text-align:center;cursor:pointer;font-size:12px}
+.category:hover{border-color:#9b7cff;transform:translateY(-2px)}
+.category span{display:block;font-size:28px;margin-bottom:8px}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin:20px 0}
+select{padding:11px;background:#111b33;color:white;border:1px solid #354466;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.product{background:var(--card);border:1px solid #283657;border-radius:15px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.product-img{height:155px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#1c2c4c,#322052);font-size:65px;position:relative;overflow:hidden}
+.product-img img{width:100%;height:100%;object-fit:cover}
+.product-info{padding:13px;display:flex;flex-direction:column;flex:1}
+.label{color:#bba8ff;font-size:10px;text-transform:uppercase}
+.product h3{font-size:14px;line-height:1.4;min-height:40px;margin:8px 0}
+.desc{color:var(--muted);font-size:12px;line-height:1.5}
+.price{font-size:21px;font-weight:bold;margin:12px 0 5px}
+.note{font-size:10px;color:var(--muted);margin-bottom:12px}
+.add{width:100%;background:linear-gradient(110deg,var(--blue),var(--purple));margin-top:auto}
+.empty{grid-column:1/-1;text-align:center;background:var(--card);padding:35px;border-radius:14px;color:var(--muted)}
+footer{padding:25px 4%;background:#060a14;color:var(--muted);font-size:12px;line-height:1.7}
+.overlay{position:fixed;inset:0;background:#000b;z-index:10;display:none;justify-content:flex-end}
+.overlay.open{display:flex}
+.cart-panel{background:#10182c;padding:22px;width:min(460px,100%);height:100%;overflow:auto;display:flex;flex-direction:column}
+.cart-head{display:flex;justify-content:space-between;align-items:center}
+.cart-head h2{margin:0}
+.cart-item{padding:13px 0;border-bottom:1px solid #303b58;display:flex;justify-content:space-between;gap:10px}
 .cart-item small{display:block;color:var(--muted);margin-top:5px}
-.qty{display:flex;align-items:center;gap:8px;margin-top:9px}
-.qty button{border:0;border-radius:6px;background:#26365a;color:white;padding:4px 9px}
-.remove-btn{background:none!important;color:#ff9aab!important}
-.cart-total{border-top:1px solid #334267;padding-top:17px;font-size:19px;font-weight:bold}
-.cart-tools{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-.cart-tools button{font-size:12px}
-.checkout{width:100%;margin-top:10px;background:var(--green);color:#071c11;border:0;border-radius:11px;padding:14px;font-weight:900}
-.small-note{font-size:11px;line-height:1.5;color:var(--muted)}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e7e3ff;color:#17122b;padding:12px 18px;border-radius:12px;z-index:60;display:none;box-shadow:0 8px 25px #0005;font-size:13px;font-weight:bold}
-.toast.show{display:block}
-@media(max-width:1000px){.product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.categories{grid-template-columns:repeat(3,1fr)}.benefits{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.header-inner{flex-wrap:wrap;gap:10px}.logo{font-size:22px}.search{order:3;flex-basis:100%;max-width:none}.cart-button{padding:10px}.hero{grid-template-columns:1fr;padding:30px 23px}.hero-art{display:none}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-image{height:125px}.product-info{padding:10px}.product h3{font-size:12px}.price{font-size:17px}.product-actions{flex-direction:column}.categories{grid-template-columns:repeat(3,1fr);gap:8px}.category-card{padding:13px 5px}.category-card .emoji{font-size:25px}.category-card strong{font-size:10px}.feature-strip{grid-template-columns:1fr}.benefits{gap:8px}.benefit{padding:12px;font-size:11px}.section-title h2{font-size:21px}}
+.qty{display:flex;gap:8px;align-items:center;margin-top:8px}
+.qty button{padding:5px 10px;background:#293858}
+.total{font-size:20px;font-weight:bold;padding:18px 0}
+.cart-actions{display:grid;gap:9px}
+.whatsapp{background:#25d366;color:#082113}
+.secondary{background:#253250}
+.small{color:var(--muted);font-size:11px;line-height:1.5}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.categories{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:650px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product-img{height:120px}.product-info{padding:10px}.product h3{font-size:12px}.price{font-size:17px}.hero{padding:25px}.hero-art{display:none}.categories{grid-template-columns:repeat(3,1fr)}.category{padding:12px 4px}.category span{font-size:24px}}
 </style>
 </head>
 <body>
-
-<div class="topbar">JAPA IMPORT • TECNOLOGIA, PERFUMES, CASA E MUITO MAIS</div>
-
 <header>
-  <div class="header-inner">
-    <a class="logo" href="#" style="text-decoration:none">JAPA <span>IMPORT</span></a>
+  <div class="header">
+    <div class="logo">JAPA <span>IMPORT</span></div>
     <div class="search">
-      <input id="searchInput" type="search" placeholder="Buscar iPhone, notebook, perfume, TV..." aria-label="Buscar produtos">
-      <button class="btn" onclick="renderProducts()">Buscar</button>
+      <input id="search" placeholder="Buscar iPhone, notebook, perfume, TV..." oninput="render()">
+      <button class="primary" onclick="render()">Buscar</button>
     </div>
-    <button class="btn cart-button" onclick="openCart()">🛒 Carrinho <span id="cartCount" class="cart-count">0</span></button>
+    <button class="cart" onclick="openCart()">🛒 Carrinho (<span id="count">0</span>)</button>
   </div>
-  <nav id="navCategories"></nav>
+  <nav id="nav"></nav>
 </header>
 
 <main>
   <section class="hero">
     <div>
-      <div class="eyebrow">Sua vitrine de importados</div>
-      <h1>Seu próximo favorito está aqui.</h1>
-      <p>Perfumes, smartphones, informática, games, áudio, casa e muito mais. Explore a vitrine da JAPA IMPORT e monte seu carrinho.</p>
-      <div class="hero-actions">
-        <button class="btn" onclick="document.getElementById('catalogTitle').scrollIntoView({behavior:'smooth'})">Explorar produtos</button>
-        <button class="btn-outline" onclick="selectCategory('Celulares')">Ver celulares</button>
-      </div>
+      <small>TECNOLOGIA • BELEZA • CASA • IMPORTADOS</small>
+      <h1>Descubra seus próximos favoritos.</h1>
+      <p>Explore celulares, informática, videogames, áudio, câmeras, eletrodomésticos, perfumes e muito mais na JAPA IMPORT.</p>
+      <button class="primary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Explorar produtos</button>
     </div>
     <div class="hero-art">📱 🎧 🎮</div>
   </section>
 
-  <section class="benefits">
-    <div class="benefit"><strong>🔎 Várias categorias</strong>Encontre produtos para diferentes necessidades.</div>
-    <div class="benefit"><strong>🛒 Carrinho fácil</strong>Adicione, remova e ajuste quantidades.</div>
-    <div class="benefit"><strong>🔗 Compartilhe</strong>Envie o carrinho por um link.</div>
-    <div class="benefit"><strong>💬 Atendimento</strong>Prepare seu pedido para enviar pelo WhatsApp.</div>
-  </section>
+  <div class="section-title"><h2>Comprar por categoria</h2><p>Escolha uma categoria para filtrar os produtos.</p></div>
+  <section class="categories" id="categories"></section>
 
-  <div class="section-title">
-    <div><h2>Explore as categorias</h2><p>Escolha uma categoria para ver os produtos.</p></div>
-  </div>
-  <section class="categories" id="categoryCards"></section>
-
-  <section class="feature-strip">
-    <div class="feature"><span>📱</span><h3>Celulares e tablets</h3><p>Smartphones, iPhones, Androids e tablets para estudo, trabalho e lazer.</p><button class="btn" onclick="selectCategory('Celulares')">Ver celulares</button></div>
-    <div class="feature"><span>🎮</span><h3>Games e tecnologia</h3><p>Consoles, acessórios, informática, notebooks e equipamentos eletrônicos.</p><button class="btn" onclick="selectCategory('Games')">Ver games</button></div>
-    <div class="feature"><span>✨</span><h3>Perfumes e beleza</h3><p>Fragrâncias famosas, body splashes, cosméticos e cuidados pessoais.</p><button class="btn" onclick="selectCategory('Perfumes')">Ver perfumes</button></div>
-  </section>
-
-  <section id="catalog">
-    <div class="section-title" id="catalogTitle">
-      <div><h2>Todos os produtos</h2><p id="resultCount">Confira nossa seleção.</p></div>
-    </div>
+  <section id="catalogo">
+    <div class="section-title"><h2 id="title">Todos os produtos</h2><p id="results"></p></div>
     <div class="toolbar">
-      <span style="color:var(--muted);font-size:12px">Encontre o que você procura</span>
-      <select id="sortSelect" onchange="renderProducts()" aria-label="Ordenar produtos">
+      <span style="color:var(--muted);font-size:12px">Vitrine JAPA IMPORT</span>
+      <select id="sort" onchange="render()">
         <option value="featured">Em destaque</option>
         <option value="low">Menor preço</option>
         <option value="high">Maior preço</option>
         <option value="az">Nome A–Z</option>
       </select>
     </div>
-    <div class="product-grid" id="productGrid"></div>
+    <section class="grid" id="products"></section>
   </section>
 
-  <section class="info-panel">
-    <h3>Sobre os produtos e preços</h3>
-    <p>Esta é uma vitrine de demonstração da JAPA IMPORT com produtos de várias categorias inspirados em itens encontrados no comparador Compras Paraguai. Os preços são referências cadastradas no código, não uma cotação ao vivo nem uma garantia de estoque. Confirme modelo, capacidade, voltagem, disponibilidade, garantia, frete, impostos e preço final antes de fechar a venda.</p>
-    <p>Consulte também o <a href="https://www.comprasparaguai.com.br/" target="_blank" rel="noopener">Compras Paraguai</a> para comparar ofertas e conferir informações atualizadas.</p>
-  </section>
+  <div class="section-title"><h2>Compare antes de comprar</h2></div>
+  <p style="color:var(--muted);font-size:13px;line-height:1.7">Confira ofertas e informações atualizadas no <a href="https://www.comprasparaguai.com.br/" target="_blank" rel="noopener">Compras Paraguai</a>. Os produtos desta vitrine são exemplos cadastrados manualmente. Os preços não são atualizados automaticamente e devem ser confirmados antes da venda.</p>
 </main>
 
 <footer>
-  <div class="footer-inner">
-    <div><strong>JAPA IMPORT</strong><p>Uma vitrine de importados com estilo.</p></div>
-    <div><strong>Atendimento</strong><p>Faça seu carrinho e envie seu pedido pelo WhatsApp.</p></div>
-    <div><strong>Importante</strong><p>Confirme preços, estoque e condições antes da compra.</p></div>
-  </div>
+  <strong style="color:white">JAPA IMPORT</strong><br>
+  Vitrine de produtos importados. Confirme disponibilidade, modelo, preço, garantia, voltagem e entrega antes de fechar o pedido.
 </footer>
 
-<div class="modal-backdrop" id="cartBackdrop" onclick="backdropClose(event)">
+<div class="overlay" id="overlay" onclick="backdrop(event)">
   <aside class="cart-panel">
-    <div class="cart-header"><h2>🛒 Seu carrinho</h2><button class="close-btn" onclick="closeCart()">Fechar ✕</button></div>
-    <div class="cart-items" id="cartItems"></div>
-    <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
-    <div class="cart-tools">
-      <button class="btn-outline" onclick="shareCart()">🔗 Compartilhar carrinho</button>
-      <button class="btn-outline" onclick="clearCart()">🗑️ Limpar carrinho</button>
+    <div class="cart-head"><h2>🛒 Meu carrinho</h2><button class="secondary" onclick="closeCart()">Fechar ✕</button></div>
+    <div id="cartItems" style="flex:1"></div>
+    <div class="total">Total: <span id="total">R$ 0,00</span></div>
+    <div class="cart-actions">
+      <button class="primary" onclick="shareCart()">🔗 Compartilhar carrinho</button>
+      <button class="whatsapp" onclick="checkout()">Enviar pedido pelo WhatsApp</button>
+      <button class="secondary" onclick="clearCart()">Limpar carrinho</button>
     </div>
-    <button class="checkout" onclick="checkoutWhatsApp()">Enviar pedido pelo WhatsApp</button>
-    <p class="small-note">O compartilhamento cria um link com os itens do carrinho. O WhatsApp só abrirá corretamente após você configurar o número da loja no código.</p>
+    <p class="small">Para receber pedidos, altere o número de WhatsApp no código. O compartilhamento gera um link com os produtos selecionados.</p>
   </aside>
 </div>
-<div class="toast" id="toast"></div>
 
 <script>
-/*
-  JAPA IMPORT
-  IMPORTANTE:
-  1. Troque o número abaixo pelo WhatsApp da loja.
-  2. Preços são referências editáveis; não existe sincronização automática.
-  3. Os preços calculados com +25% usam referências encontradas no
-     Compras Paraguai; confirme tudo antes de anunciar.
-*/
+// ALTERE PELO NÚMERO DA SUA LOJA: código do país + DDD + número.
+const WHATSAPP = "5511999999999";
 
-const WHATSAPP = "5511999999999"; // TROQUE PELO SEU NÚMERO COM DDI E DDD
-
-const images = {
-  phone: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=700&q=80",
-  laptop: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
-  audio: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",
-  tv: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
-  game: "https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&w=700&q=80",
-  perfume: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80",
-  home: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=700&q=80",
-  camera: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=700&q=80",
-  watch: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",
-  beauty: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80",
-  drone: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&w=700&q=80",
-  appliance: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?auto=format&fit=crop&w=700&q=80"
-};
-
-const categories = [
-  {name:"Todos",icon:"🛍️"},
-  {name:"Celulares",icon:"📱"},
-  {name:"Informática",icon:"💻"},
-  {name:"Tablets",icon:"▣"},
-  {name:"TVs",icon:"📺"},
-  {name:"Games",icon:"🎮"},
-  {name:"Áudio",icon:"🎧"},
-  {name:"Câmeras e drones",icon:"📷"},
-  {name:"Eletrodomésticos",icon:"🏠"},
-  {name:"Perfumes",icon:"✨"},
-  {name:"Body splash",icon:"🌸"},
-  {name:"Beleza e cuidados",icon:"🧴"},
-  {name:"Relógios",icon:"⌚"},
-  {name:"Acessórios",icon:"🔌"}
+const cats=[
+ ["Todos","🛍️"],["Celulares","📱"],["Informática","💻"],["Tablets","▣"],
+ ["TVs","📺"],["Games","🎮"],["Áudio","🎧"],["Câmeras e drones","📷"],
+ ["Eletrodomésticos","🏠"],["Perfumes","✨"],["Body splash","🌸"],
+ ["Beleza","💄"],["Relógios","⌚"],["Acessórios","🔌"],["Casa","🛋️"],
+ ["Moda","👟"],["Esportes e lazer","🏕️"]
 ];
 
-/*
-  Os valores de iPhone 17, MacBook Air, Nintendo Switch 2,
-  PlayStation 5 Pro e Lancôme La Vie Est Belle foram calculados
-  como referência do comparador +25%, com base nos valores listados
-  durante a pesquisa. Os demais valores são estimativas editáveis.
-*/
-
-const catalog = [
-  // CELULARES
-  {id:1,name:"Apple iPhone 17 256GB",cat:"Celulares",price:6123.13,desc:"Smartphone Apple • 256GB",emoji:"📱",img:"phone",tag:"Destaque"},
-  {id:2,name:"Apple iPhone 17 Pro 256GB",cat:"Celulares",price:7347.75,desc:"Linha Pro • 256GB",emoji:"📱",img:"phone",tag:"Premium"},
-  {id:3,name:"Apple iPhone 17 Pro Max 256GB",cat:"Celulares",price:7694.94,desc:"Tela grande • 256GB",emoji:"📱",img:"phone",tag:"Premium"},
-  {id:4,name:"Apple iPhone 16 128GB",cat:"Celulares",price:4967.94,desc:"Apple • 128GB",emoji:"📱",img:"phone"},
-  {id:5,name:"Samsung Galaxy S25 256GB",cat:"Celulares",price:4299.90,desc:"Samsung Galaxy • 256GB",emoji:"📱",img:"phone"},
-  {id:6,name:"Samsung Galaxy A56 256GB",cat:"Celulares",price:2199.90,desc:"Tela ampla • 256GB",emoji:"📱",img:"phone"},
-  {id:7,name:"Xiaomi Redmi Note 14 256GB",cat:"Celulares",price:1399.90,desc:"Xiaomi • 256GB",emoji:"📱",img:"phone"},
-  {id:8,name:"Motorola Edge 60 Pro",cat:"Celulares",price:2899.90,desc:"Motorola • linha Edge",emoji:"📱",img:"phone"},
-  {id:9,name:"Oppo Reno 11 256GB",cat:"Celulares",price:2127.25,desc:"Oppo • 256GB",emoji:"📱",img:"phone"},
-
-  // INFORMÁTICA
-  {id:10,name:"Apple MacBook Air M5 16GB / 512GB",cat:"Informática",price:8957.44,desc:"Notebook Apple • 13,6 polegadas",emoji:"💻",img:"laptop",tag:"Destaque"},
-  {id:11,name:"Notebook Acer Aspire Go 15",cat:"Informática",price:4599.90,desc:"Notebook para estudo e trabalho",emoji:"💻",img:"laptop"},
-  {id:12,name:"Notebook Lenovo IdeaPad 15",cat:"Informática",price:3299.90,desc:"Notebook versátil",emoji:"💻",img:"laptop"},
-  {id:13,name:"Notebook gamer ASUS TUF",cat:"Informática",price:6499.90,desc:"Notebook para jogos e criação",emoji:"💻",img:"laptop"},
-  {id:14,name:"Monitor Gamer 27 polegadas",cat:"Informática",price:1299.90,desc:"Monitor para setup gamer",emoji:"🖥️",img:"laptop"},
-  {id:15,name:"SSD NVMe 1TB",cat:"Informática",price:599.90,desc:"Armazenamento para computador",emoji:"💾",img:"laptop"},
-  {id:16,name:"Teclado Mecânico RGB",cat:"Informática",price:249.90,desc:"Teclado para jogos e trabalho",emoji:"⌨️",img:"laptop"},
-  {id:17,name:"Mouse Gamer RGB",cat:"Informática",price:149.90,desc:"Mouse para setup gamer",emoji:"🖱️",img:"laptop"},
-
-  // TABLETS
-  {id:18,name:"Apple iPad 11ª geração 128GB",cat:"Tablets",price:2834.31,desc:"Tablet Apple • tela de 11 polegadas",emoji:"▣",img:"phone",tag:"Destaque"},
-  {id:19,name:"Samsung Galaxy Tab S10 FE",cat:"Tablets",price:2499.90,desc:"Tablet Android Samsung",emoji:"▣",img:"phone"},
-  {id:20,name:"Xiaomi Redmi Pad SE",cat:"Tablets",price:1199.90,desc:"Tablet para entretenimento",emoji:"▣",img:"phone"},
-
-  // TVs
-  {id:21,name:"Smart TV Samsung 43 polegadas",cat:"TVs",price:2299.90,desc:"Smart TV para sua sala",emoji:"📺",img:"tv"},
-  {id:22,name:"Smart TV Samsung 55 polegadas 4K",cat:"TVs",price:3299.90,desc:"Tela grande • resolução 4K",emoji:"📺",img:"tv"},
-  {id:23,name:"Smart TV LG 50 polegadas 4K",cat:"TVs",price:2799.90,desc:"Smart TV com resolução 4K",emoji:"📺",img:"tv"},
-  {id:24,name:"Smart TV Philco 32 polegadas",cat:"TVs",price:999.90,desc:"Smart TV compacta",emoji:"📺",img:"tv"},
-  {id:25,name:"Projetor Full HD",cat:"TVs",price:899.90,desc:"Para filmes e apresentações",emoji:"📽️",img:"tv"},
-
-  // GAMES
-  {id:26,name:"PlayStation 5 Pro 2TB",cat:"Games",price:7556.06,desc:"Console Sony • edição digital",emoji:"🎮",img:"game",tag:"Destaque"},
-  {id:27,name:"Nintendo Switch 2 256GB",cat:"Games",price:3377.13,desc:"Console portátil e de mesa",emoji:"🎮",img:"game",tag:"Destaque"},
-  {id:28,name:"Xbox Series S 1TB",cat:"Games",price:3755.88,desc:"Console Microsoft • digital",emoji:"🎮",img:"game"},
-  {id:29,name:"Controle sem fio para console",cat:"Games",price:349.90,desc:"Controle para jogos",emoji:"🕹️",img:"game"},
-  {id:30,name:"Headset Gamer com microfone",cat:"Games",price:249.90,desc:"Áudio para jogar e conversar",emoji:"🎧",img:"audio"},
-  {id:31,name:"Cadeira Gamer",cat:"Games",price:999.90,desc:"Conforto para seu setup",emoji:"🪑",img:"game"},
-
-  // ÁUDIO
-  {id:32,name:"Fone Bluetooth Apple AirPods Pro",cat:"Áudio",price:1899.90,desc:"Fone sem fio Apple",emoji:"🎧",img:"audio",tag:"Destaque"},
-  {id:33,name:"Fone Bluetooth Samsung Galaxy Buds",cat:"Áudio",price:699.90,desc:"Fone sem fio Samsung",emoji:"🎧",img:"audio"},
-  {id:34,name:"Fone JBL Tune",cat:"Áudio",price:299.90,desc:"Fone para música e chamadas",emoji:"🎧",img:"audio"},
-  {id:35,name:"Caixa de Som JBL portátil",cat:"Áudio",price:599.90,desc:"Som portátil para passeios",emoji:"🔊",img:"audio"},
-  {id:36,name:"Caixa de Som Joog One HiFi",cat:"Áudio",price:1396.36,desc:"Caixa de som • referência de preço",emoji:"🔊",img:"audio"},
-  {id:37,name:"Microfone sem fio",cat:"Áudio",price:349.90,desc:"Para gravações e apresentações",emoji:"🎙️",img:"audio"},
-
-  // CÂMERAS E DRONES
-  {id:38,name:"Câmera Digital Nikon Coolpix P950",cat:"Câmeras e drones",price:4699.00,desc:"Câmera digital Nikon",emoji:"📷",img:"camera",tag:"Destaque"},
-  {id:39,name:"Câmera de ação 4K",cat:"Câmeras e drones",price:599.90,desc:"Para viagens e esportes",emoji:"📷",img:"camera"},
-  {id:40,name:"Drone DJI Mini 5 Pro 4K",cat:"Câmeras e drones",price:5054.60,desc:"Drone compacto • referência de preço",emoji:"🚁",img:"drone"},
-  {id:41,name:"Câmera de segurança Wi-Fi",cat:"Câmeras e drones",price:249.90,desc:"Monitoramento residencial",emoji:"📹",img:"camera"},
-
-  // ELETRODOMÉSTICOS
-  {id:42,name:"Robô aspirador Xiaomi Robot Vacuum",cat:"Eletrodomésticos",price:2651.25,desc:"Robô aspirador • referência de preço",emoji:"🤖",img:"appliance",tag:"Destaque"},
-  {id:43,name:"Air Fryer 5 litros",cat:"Eletrodomésticos",price:499.90,desc:"Fritadeira elétrica sem óleo",emoji:"🍟",img:"appliance"},
-  {id:44,name:"Liquidificador potente",cat:"Eletrodomésticos",price:249.90,desc:"Para sucos e receitas",emoji:"🥤",img:"appliance"},
-  {id:45,name:"Cafeteira elétrica",cat:"Eletrodomésticos",price:299.90,desc:"Café para sua rotina",emoji:"☕",img:"appliance"},
-  {id:46,name:"Aspirador de pó vertical",cat:"Eletrodomésticos",price:399.90,desc:"Limpeza prática para casa",emoji:"🧹",img:"appliance"},
-  {id:47,name:"Panela elétrica multifuncional",cat:"Eletrodomésticos",price:279.90,desc:"Praticidade na cozinha",emoji:"🍲",img:"appliance"},
-  {id:48,name:"Ventilador de mesa",cat:"Eletrodomésticos",price:169.90,desc:"Ventilação para o dia a dia",emoji:"🌀",img:"appliance"},
-  {id:49,name:"Secador de cabelo profissional",cat:"Eletrodomésticos",price:249.90,desc:"Cuidados pessoais",emoji:"💨",img:"appliance"},
-
-  // PERFUMES
-  {id:50,name:"Lancôme La Vie Est Belle EDP 100ml",cat:"Perfumes",price:473.38,desc:"Perfume feminino • 100ml",emoji:"✨",img:"perfume",tag:"Destaque"},
-  {id:51,name:"Carolina Herrera 212 VIP Men 100ml",cat:"Perfumes",price:381.00,desc:"Perfume masculino • 100ml",emoji:"✨",img:"perfume"},
-  {id:52,name:"Carolina Herrera 212 VIP Black 100ml",cat:"Perfumes",price:406.40,desc:"Perfume masculino • 100ml",emoji:"✨",img:"perfume"},
-  {id:53,name:"Paco Rabanne 1 Million EDT 100ml",cat:"Perfumes",price:298.45,desc:"Perfume masculino • 100ml",emoji:"✨",img:"perfume"},
-  {id:54,name:"Dior Sauvage EDT 100ml",cat:"Perfumes",price:539.75,desc:"Perfume masculino • 100ml",emoji:"✨",img:"perfume"},
-  {id:55,name:"Montblanc Explorer EDP 100ml",cat:"Perfumes",price:276.23,desc:"Perfume masculino • 100ml",emoji:"✨",img:"perfume"},
-  {id:56,name:"Malbec O Boticário",cat:"Perfumes",price:179.90,desc:"Fragrância masculina",emoji:"✨",img:"perfume"},
-  {id:57,name:"Carolina Herrera Good Girl 80ml",cat:"Perfumes",price:495.30,desc:"Perfume feminino • 80ml",emoji:"✨",img:"perfume"},
-  {id:58,name:"Versace Eros EDT",cat:"Perfumes",price:359.90,desc:"Fragrância masculina",emoji:"✨",img:"perfume"},
-  {id:59,name:"Lattafa Eclaire Pistache 100ml",cat:"Perfumes",price:156.91,desc:"Perfume unissex • 100ml",emoji:"✨",img:"perfume"},
-  {id:60,name:"Lattafa Eclaire Banoffi 100ml",cat:"Perfumes",price:157.16,desc:"Perfume unissex • 100ml",emoji:"✨",img:"perfume"},
-  {id:61,name:"Zimaya Tiramisu Coco 100ml",cat:"Perfumes",price:107.89,desc:"Perfume unissex • 100ml",emoji:"✨",img:"perfume"},
-  {id:62,name:"Afnan 9PM EDP",cat:"Perfumes",price:249.90,desc:"Perfume masculino",emoji:"✨",img:"perfume"},
-  {id:63,name:"Armaf Club de Nuit",cat:"Perfumes",price:299.90,desc:"Fragrância marcante",emoji:"✨",img:"perfume"},
-  {id:64,name:"Yves Saint Laurent Libre",cat:"Perfumes",price:499.90,desc:"Perfume feminino",emoji:"✨",img:"perfume"},
-
-  // BODY SPLASH
-  {id:65,name:"Victoria's Secret Tidal Shimmer 250ml",cat:"Body splash",price:76.35,desc:"Body splash • 250ml",emoji:"🌸",img:"beauty",tag:"Destaque"},
-  {id:66,name:"Victoria's Secret Bare Vanilla",cat:"Body splash",price:89.00,desc:"Body mist perfumado",emoji:"🌸",img:"beauty"},
-  {id:67,name:"Victoria's Secret Love Spell",cat:"Body splash",price:89.00,desc:"Body mist perfumado",emoji:"🌸",img:"beauty"},
-  {id:68,name:"Victoria's Secret Pure Seduction",cat:"Body splash",price:89.00,desc:"Body mist perfumado",emoji:"🌸",img:"beauty"},
-  {id:69,name:"VS Secrets Romance Coconut Dream",cat:"Body splash",price:38.18,desc:"Body splash • 250ml",emoji:"🌸",img:"beauty"},
-  {id:70,name:"VS Secrets Romance Dew Kiss",cat:"Body splash",price:38.18,desc:"Body splash • 250ml",emoji:"🌸",img:"beauty"},
-  {id:71,name:"Lattafa Layaan Body Splash 250ml",cat:"Body splash",price:50.90,desc:"Body splash • 250ml",emoji:"🌸",img:"beauty"},
-  {id:72,name:"Bath & Body Works Japanese Cherry Blossom",cat:"Body splash",price:99.00,desc:"Fragrância corporal",emoji:"🌸",img:"beauty"},
-  {id:73,name:"O Boticário Cuide-se Bem Deleite",cat:"Body splash",price:69.90,desc:"Body splash corporal",emoji:"🌸",img:"beauty"},
-  {id:74,name:"Natura Tododia Ameixa e Flor de Baunilha",cat:"Body splash",price:69.90,desc:"Fragrância corporal",emoji:"🌸",img:"beauty"},
-
-  // BELEZA
-  {id:75,name:"Kit skincare facial",cat:"Beleza e cuidados",price:199.90,desc:"Cuidados diários para a pele",emoji:"🧴",img:"beauty"},
-  {id:76,name:"Sérum facial Celimax Retinal Shot",cat:"Beleza e cuidados",price:71.01,desc:"Sérum facial • referência de preço",emoji:"🧴",img:"beauty"},
-  {id:77,name:"Escova secadora",cat:"Beleza e cuidados",price:249.90,desc:"Modelagem prática dos cabelos",emoji:"💇",img:"beauty"},
-  {id:78,name:"Prancha alisadora",cat:"Beleza e cuidados",price:199.90,desc:"Ferramenta para cabelo",emoji:"💇",img:"beauty"},
-  {id:79,name:"Kit maquiagem",cat:"Beleza e cuidados",price:149.90,desc:"Produtos para maquiagem",emoji:"💄",img:"beauty"},
-
-  // RELÓGIOS
-  {id:80,name:"Apple Watch SE",cat:"Relógios",price:1799.90,desc:"Relógio inteligente Apple",emoji:"⌚",img:"watch"},
-  {id:81,name:"Samsung Galaxy Watch",cat:"Relógios",price:1299.90,desc:"Relógio inteligente Samsung",emoji:"⌚",img:"watch"},
-  {id:82,name:"Smartwatch Xiaomi",cat:"Relógios",price:399.90,desc:"Relógio inteligente",emoji:"⌚",img:"watch"},
-  {id:83,name:"Relógio Casio clássico",cat:"Relógios",price:249.90,desc:"Relógio de pulso",emoji:"⌚",img:"watch"},
-
-  // ACESSÓRIOS
-  {id:84,name:"Carregador USB-C rápido",cat:"Acessórios",price:99.90,desc:"Carregador para dispositivos compatíveis",emoji:"🔌",img:"phone"},
-  {id:85,name:"Power bank 20.000mAh",cat:"Acessórios",price:179.90,desc:"Bateria portátil",emoji:"🔋",img:"phone"},
-  {id:86,name:"Capa para smartphone",cat:"Acessórios",price:49.90,desc:"Proteção para celular",emoji:"📱",img:"phone"},
-  {id:87,name:"Carregador sem fio",cat:"Acessórios",price:129.90,desc:"Carregamento wireless compatível",emoji:"🔌",img:"phone"},
-  {id:88,name:"Roteador Wi-Fi",cat:"Acessórios",price:299.90,desc:"Rede sem fio para sua casa",emoji:"📶",img:"laptop"},
-  {id:89,name:"Cabo USB-C reforçado",cat:"Acessórios",price:39.90,desc:"Cabo para dispositivos compatíveis",emoji:"🔌",img:"phone"}
+const products=[
+{id:1,n:"Apple iPhone 17 256GB",c:"Celulares",p:4898.50,e:"📱",d:"Apple • 256GB",t:1},
+{id:2,n:"Apple iPhone 17 Pro 256GB",c:"Celulares",p:6464,e:"📱",d:"Apple • linha Pro"},
+{id:3,n:"Apple iPhone 17 Pro Max 256GB",c:"Celulares",p:8433.50,e:"📱",d:"Apple • tela grande"},
+{id:4,n:"Apple iPhone 16 128GB",c:"Celulares",p:3999.90,e:"📱",d:"Apple • 128GB"},
+{id:5,n:"Samsung Galaxy S25",c:"Celulares",p:4299.90,e:"📱",d:"Samsung Galaxy"},
+{id:6,n:"Samsung Galaxy A56 256GB",c:"Celulares",p:2199.90,e:"📱",d:"Samsung • 256GB"},
+{id:7,n:"Xiaomi Redmi Note 14",c:"Celulares",p:1399.90,e:"📱",d:"Xiaomi"},
+{id:8,n:"Motorola Edge 60 Pro",c:"Celulares",p:2899.90,e:"📱",d:"Motorola Edge"},
+{id:9,n:"Oppo Reno 11 256GB",c:"Celulares",p:1691.75,e:"📱",d:"Oppo • 256GB"},
+{id:10,n:"MacBook Air M5 16GB / 512GB",c:"Informática",p:3696.60,e:"💻",d:"Apple • notebook"},
+{id:11,n:"MacBook Pro",c:"Informática",p:9999.90,e:"💻",d:"Apple • alto desempenho"},
+{id:12,n:"Notebook Acer Aspire 15",c:"Informática",p:3299.90,e:"💻",d:"Estudo e trabalho"},
+{id:13,n:"Notebook Lenovo IdeaPad",c:"Informática",p:3199.90,e:"💻",d:"Notebook versátil"},
+{id:14,n:"Notebook Gamer ASUS TUF",c:"Informática",p:6499.90,e:"💻",d:"Para jogos"},
+{id:15,n:"Monitor Gamer 27 polegadas",c:"Informática",p:1299.90,e:"🖥️",d:"Monitor para setup"},
+{id:16,n:"SSD NVMe 1TB",c:"Informática",p:599.90,e:"💾",d:"Armazenamento"},
+{id:17,n:"Teclado Mecânico RGB",c:"Informática",p:249.90,e:"⌨️",d:"Teclado gamer"},
+{id:18,n:"Mouse Gamer RGB",c:"Informática",p:149.90,e:"🖱️",d:"Mouse gamer"},
+{id:19,n:"iPad 11ª Geração 128GB",c:"Tablets",p:2834.31,e:"▣",d:"Apple • 11 polegadas"},
+{id:20,n:"Samsung Galaxy Tab S10 FE",c:"Tablets",p:2499.90,e:"▣",d:"Tablet Samsung"},
+{id:21,n:"Xiaomi Redmi Pad SE",c:"Tablets",p:1199.90,e:"▣",d:"Tablet Android"},
+{id:22,n:"Smart TV Samsung 43 polegadas",c:"TVs",p:2299.90,e:"📺",d:"Smart TV"},
+{id:23,n:"Smart TV Samsung 55 polegadas 4K",c:"TVs",p:3299.90,e:"📺",d:"Resolução 4K"},
+{id:24,n:"Smart TV LG 50 polegadas 4K",c:"TVs",p:2799.90,e:"📺",d:"Smart TV 4K"},
+{id:25,n:"Smart TV 32 polegadas",c:"TVs",p:999.90,e:"📺",d:"TV compacta"},
+{id:26,n:"PlayStation 5 Pro 2TB",c:"Games",p:7556.06,e:"🎮",d:"Sony • console"},
+{id:27,n:"Nintendo Switch 2 256GB",c:"Games",p:3377.13,e:"🎮",d:"Console híbrido"},
+{id:28,n:"Xbox Series S 1TB",c:"Games",p:3755.88,e:"🎮",d:"Microsoft Xbox"},
+{id:29,n:"Controle sem fio para console",c:"Games",p:349.90,e:"🕹️",d:"Acessório gamer"},
+{id:30,n:"Headset Gamer",c:"Games",p:249.90,e:"🎧",d:"Fone com microfone"},
+{id:31,n:"Cadeira Gamer",c:"Games",p:999.90,e:"🪑",d:"Para setup"},
+{id:32,n:"Apple AirPods Pro",c:"Áudio",p:1899.90,e:"🎧",d:"Fone sem fio"},
+{id:33,n:"Samsung Galaxy Buds",c:"Áudio",p:699.90,e:"🎧",d:"Fone Bluetooth"},
+{id:34,n:"JBL Tune",c:"Áudio",p:299.90,e:"🎧",d:"Fone de ouvido"},
+{id:35,n:"Caixa de Som JBL portátil",c:"Áudio",p:599.90,e:"🔊",d:"Som Bluetooth"},
+{id:36,n:"Caixa de Som Joog One HiFi",c:"Áudio",p:1110.49,e:"🔊",d:"Caixa de som"},
+{id:37,n:"Microfone sem fio",c:"Áudio",p:349.90,e:"🎙️",d:"Para gravação"},
+{id:38,n:"Câmera Nikon Coolpix P950",c:"Câmeras e drones",p:3737,e:"📷",d:"Câmera digital"},
+{id:39,n:"Câmera de ação 4K",c:"Câmeras e drones",p:599.90,e:"📷",d:"Para viagens"},
+{id:40,n:"Drone DJI Mini 5 Pro 4K",c:"Câmeras e drones",p:4019.80,e:"🚁",d:"Drone compacto"},
+{id:41,n:"Câmera de segurança Wi-Fi",c:"Câmeras e drones",p:249.90,e:"📹",d:"Monitoramento"},
+{id:42,n:"Robô Xiaomi Robot Vacuum H50 Pro",c:"Eletrodomésticos",p:2651.25,e:"🤖",d:"Robô aspirador"},
+{id:43,n:"Air Fryer 5 litros",c:"Eletrodomésticos",p:499.90,e:"🍟",d:"Fritadeira elétrica"},
+{id:44,n:"Liquidificador",c:"Eletrodomésticos",p:249.90,e:"🥤",d:"Para cozinha"},
+{id:45,n:"Cafeteira elétrica",c:"Eletrodomésticos",p:299.90,e:"☕",d:"Café em casa"},
+{id:46,n:"Aspirador de pó vertical",c:"Eletrodomésticos",p:399.90,e:"🧹",d:"Limpeza"},
+{id:47,n:"Panela elétrica multifuncional",c:"Eletrodomésticos",p:279.90,e:"🍲",d:"Cozinha prática"},
+{id:48,n:"Ventilador de mesa",c:"Eletrodomésticos",p:169.90,e:"🌀",d:"Ventilação"},
+{id:49,n:"Secador de cabelo",c:"Eletrodomésticos",p:249.90,e:"💨",d:"Cuidados pessoais"},
+{id:50,n:"Lancôme La Vie Est Belle 100ml",c:"Perfumes",p:473.38,e:"✨",d:"Perfume feminino"},
+{id:51,n:"Carolina Herrera 212 VIP Men 100ml",c:"Perfumes",p:381,e:"✨",d:"Perfume masculino"},
+{id:52,n:"Carolina Herrera 212 VIP Black 100ml",c:"Perfumes",p:406.40,e:"✨",d:"Perfume masculino"},
+{id:53,n:"Paco Rabanne 1 Million 100ml",c:"Perfumes",p:298.45,e:"✨",d:"Perfume masculino"},
+{id:54,n:"Dior Sauvage EDT 100ml",c:"Perfumes",p:539.75,e:"✨",d:"Perfume masculino"},
+{id:55,n:"Montblanc Explorer 100ml",c:"Perfumes",p:276.23,e:"✨",d:"Perfume masculino"},
+{id:56,n:"Malbec O Boticário",c:"Perfumes",p:179.90,e:"✨",d:"Perfume masculino"},
+{id:57,n:"Carolina Herrera Good Girl 80ml",c:"Perfumes",p:495.30,e:"✨",d:"Perfume feminino"},
+{id:58,n:"Versace Eros",c:"Perfumes",p:359.90,e:"✨",d:"Perfume masculino"},
+{id:59,n:"Lattafa Eclaire Pistache 100ml",c:"Perfumes",p:156,e:"✨",d:"Perfume unissex"},
+{id:60,n:"Lattafa Eclaire Banoffi 100ml",c:"Perfumes",p:157,e:"✨",d:"Perfume unissex"},
+{id:61,n:"Zimaya Tiramisu Coco 100ml",c:"Perfumes",p:108,e:"✨",d:"Perfume unissex"},
+{id:62,n:"Afnan 9PM",c:"Perfumes",p:249.90,e:"✨",d:"Perfume masculino"},
+{id:63,n:"Armaf Club de Nuit",c:"Perfumes",p:299.90,e:"✨",d:"Perfume marcante"},
+{id:64,n:"Yves Saint Laurent Libre",c:"Perfumes",p:499.90,e:"✨",d:"Perfume feminino"},
+{id:65,n:"Victoria's Secret Tidal Shimmer 250ml",c:"Body splash",p:76.35,e:"🌸",d:"Body splash"},
+{id:66,n:"Victoria's Secret Bare Vanilla",c:"Body splash",p:89,e:"🌸",d:"Body mist"},
+{id:67,n:"Victoria's Secret Love Spell",c:"Body splash",p:89,e:"🌸",d:"Body mist"},
+{id:68,n:"Victoria's Secret Pure Seduction",c:"Body splash",p:89,e:"🌸",d:"Body mist"},
+{id:69,n:"VS Secrets Romance Coconut Dream",c:"Body splash",p:38.18,e:"🌸",d:"Body splash 250ml"},
+{id:70,n:"Lattafa Layaan Body Splash 250ml",c:"Body splash",p:50.90,e:"🌸",d:"Body splash"},
+{id:71,n:"Bath & Body Works Japanese Cherry Blossom",c:"Body splash",p:99,e:"🌸",d:"Fragrância corporal"},
+{id:72,n:"Natura Tododia Ameixa e Baunilha",c:"Body splash",p:69.90,e:"🌸",d:"Fragrância corporal"},
+{id:73,n:"Kit skincare facial",c:"Beleza",p:199.90,e:"🧴",d:"Cuidados com a pele"},
+{id:74,n:"Sérum facial Celimax Retinal Shot",c:"Beleza",p:71.01,e:"🧴",d:"Sérum facial"},
+{id:75,n:"Escova secadora",c:"Beleza",p:249.90,e:"💇",d:"Cabelos"},
+{id:76,n:"Prancha alisadora",c:"Beleza",p:199.90,e:"💇",d:"Cabelos"},
+{id:77,n:"Kit maquiagem",c:"Beleza",p:149.90,e:"💄",d:"Maquiagem"},
+{id:78,n:"Apple Watch SE",c:"Relógios",p:1799.90,e:"⌚",d:"Smartwatch Apple"},
+{id:79,n:"Samsung Galaxy Watch",c:"Relógios",p:1299.90,e:"⌚",d:"Smartwatch Samsung"},
+{id:80,n:"Smartwatch Xiaomi",c:"Relógios",p:399.90,e:"⌚",d:"Relógio inteligente"},
+{id:81,n:"Relógio Casio clássico",c:"Relógios",p:249.90,e:"⌚",d:"Relógio de pulso"},
+{id:82,n:"Carregador USB-C rápido",c:"Acessórios",p:99.90,e:"🔌",d:"Carregador"},
+{id:83,n:"Power bank 20.000mAh",c:"Acessórios",p:179.90,e:"🔋",d:"Bateria portátil"},
+{id:84,n:"Capa para smartphone",c:"Acessórios",p:49.90,e:"📱",d:"Proteção para celular"},
+{id:85,n:"Carregador sem fio",c:"Acessórios",p:129.90,e:"🔌",d:"Wireless compatível"},
+{id:86,n:"Roteador Wi-Fi",c:"Acessórios",p:299.90,e:"📶",d:"Rede para casa"},
+{id:87,n:"Cabo USB-C reforçado",c:"Acessórios",p:39.90,e:"🔌",d:"Cabo para dispositivos"},
+{id:88,n:"Luminária decorativa",c:"Casa",p:89.90,e:"💡",d:"Decoração"},
+{id:89,n:"Garrafa térmica",c:"Casa",p:99.90,e:"🥤",d:"Uso diário"},
+{id:90,n:"Mochila para notebook",c:"Casa",p:149.90,e:"🎒",d:"Bolsa para transporte"},
+{id:91,n:"Tênis esportivo",c:"Moda",p:249.90,e:"👟",d:"Calçado esportivo"},
+{id:92,n:"Óculos de sol",c:"Moda",p:129.90,e:"🕶️",d:"Acessório de moda"},
+{id:93,n:"Mala de viagem",c:"Moda",p:299.90,e:"🧳",d:"Para viagens"},
+{id:94,n:"Mochila de camping",c:"Esportes e lazer",p:199.90,e:"🏕️",d:"Aventura e lazer"},
+{id:95,n:"Binóculo compacto",c:"Esportes e lazer",p:149.90,e:"🔭",d:"Atividades ao ar livre"},
+{id:96,n:"Caixa térmica portátil",c:"Esportes e lazer",p:179.90,e:"🧊",d:"Passeios e viagens"}
 ];
 
-let activeCategory = "Todos";
-let cart = {};
+let category="Todos";
+let cart={};
 
-const money = value => value.toLocaleString("pt-BR", {
-  style:"currency", currency:"BRL"
-});
+function money(v){return Number(v).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, ch => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  })[ch]);
+function loadCart(){
+ try{
+  const hash=location.hash.match(/carrinho=([^&]+)/);
+  if(hash){cart=JSON.parse(decodeURIComponent(hash[1]))||{};history.replaceState(null,"",location.pathname+location.search)}
+  else{cart=JSON.parse(localStorage.getItem("japaCart")||"{}")||{}}
+ }catch(e){cart={}}
+}
+function saveCart(){try{localStorage.setItem("japaCart",JSON.stringify(cart))}catch(e){}}
+
+function drawCategories(){
+ document.getElementById("nav").innerHTML=cats.map(([name,icon])=>
+ `<button class="${category===name?'active':''}" onclick="choose('${name}')">${icon} ${name}</button>`).join("");
+ document.getElementById("categories").innerHTML=cats.filter(c=>c[0]!=="Todos").map(([name,icon])=>
+ `<div class="category" onclick="choose('${name}')"><span>${icon}</span><strong>${name}</strong></div>`).join("");
 }
 
-function loadCart() {
-  try {
-    const shared = location.hash.match(/carrinho=([^&]+)/);
-    if (shared) {
-      const decoded = JSON.parse(decodeURIComponent(shared[1]));
-      if (decoded && typeof decoded === "object") cart = decoded;
-      saveCart();
-      history.replaceState(null, "", location.pathname + location.search);
-      return;
-    }
-    const saved = localStorage.getItem("japaImportCart");
-    if (saved) cart = JSON.parse(saved) || {};
-  } catch (e) {
-    cart = {};
-  }
+function choose(name){
+ category=name;drawCategories();render();
+ document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
 }
 
-function saveCart() {
-  try { localStorage.setItem("japaImportCart", JSON.stringify(cart)); }
-  catch(e) {}
+function render(){
+ const term=document.getElementById("search").value.trim().toLowerCase();
+ let list=products.filter(p=>(category==="Todos"||p.c===category)&&(!term||(p.n+" "+p.c+" "+p.d).toLowerCase().includes(term)));
+ const sort=document.getElementById("sort").value;
+ if(sort==="low")list.sort((a,b)=>a.p-b.p);
+ if(sort==="high")list.sort((a,b)=>b.p-a.p);
+ if(sort==="az")list.sort((a,b)=>a.n.localeCompare(b.n,"pt-BR"));
+ document.getElementById("title").textContent=category==="Todos"?"Todos os produtos":category;
+ document.getElementById("results").textContent=list.length+" produto(s) encontrado(s).";
+ document.getElementById("products").innerHTML=list.length?list.map(p=>`
+ <article class="product">
+  <div class="product-img"><span>${p.e}</span></div>
+  <div class="product-info">
+   <div class="label">${safe(p.c)}</div>
+   <h3>${safe(p.n)}</h3>
+   <div class="desc">${safe(p.d)}</div>
+   <div class="price">${money(p.p)}</div>
+   <div class="note">Preço de referência. Confirme antes de comprar.</div>
+   <button class="add" onclick="add(${p.id})">Adicionar ao carrinho</button>
+   <a style="display:block;text-align:center;margin-top:10px;font-size:11px;color:#c5b7ff" href="https://www.comprasparaguai.com.br/busca/?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener">Comparar no Compras Paraguai ↗</a>
+  </div>
+ </article>`).join(""):`<div class="empty">Nenhum produto encontrado. Tente outra busca ou categoria.</div>`;
 }
 
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 2500);
+function add(id){cart[id]=(Number(cart[id])||0)+1;saveCart();updateCart();alert("Produto adicionado ao carrinho!")}
+function change(id,d){cart[id]=(Number(cart[id])||0)+d;if(cart[id]<=0)delete cart[id];saveCart();updateCart()}
+function removeItem(id){delete cart[id];saveCart();updateCart()}
+function clearCart(){if(confirm("Deseja limpar o carrinho?")){cart={};saveCart();updateCart()}}
+function openCart(){document.getElementById("overlay").classList.add("open");updateCart()}
+function closeCart(){document.getElementById("overlay").classList.remove("open")}
+function backdrop(e){if(e.target.id==="overlay")closeCart()}
+
+function updateCart(){
+ const items=products.filter(p=>Number(cart[p.id])>0);
+ document.getElementById("count").textContent=items.reduce((s,p)=>s+Number(cart[p.id]),0);
+ let total=0;
+ document.getElementById("cartItems").innerHTML=items.length?items.map(p=>{
+  const q=Number(cart[p.id]);total+=p.p*q;
+  return `<div class="cart-item"><div><strong>${safe(p.n)}</strong><small>${money(p.p)} cada</small><div class="qty"><button onclick="change(${p.id},-1)">−</button><span>${q}</span><button onclick="change(${p.id},1)">+</button><button onclick="removeItem(${p.id})">Remover</button></div></div><strong>${money(p.p*q)}</strong></div>`;
+ }).join(""):`<div class="empty">Seu carrinho está vazio.</div>`;
+ document.getElementById("total").textContent=money(total);
 }
 
-function renderNavigation() {
-  document.getElementById("navCategories").innerHTML = categories.map(c =>
-    `<button class="${activeCategory === c.name ? "active" : ""}" onclick="selectCategory('${c.name}')">${c.icon} ${c.name}</button>`
-  ).join("");
-
-  document.getElementById("categoryCards").innerHTML = categories
-    .filter(c => c.name !== "Todos")
-    .map(c => `<div class="category-card" onclick="selectCategory('${c.name}')">
-      <span class="emoji">${c.icon}</span><strong>${c.name}</strong>
-    </div>`).join("");
+async function shareCart(){
+ if(!Object.values(cart).some(q=>Number(q)>0)){alert("Adicione produtos antes de compartilhar.");return}
+ const url=location.origin+location.pathname+"#carrinho="+encodeURIComponent(JSON.stringify(cart));
+ try{await navigator.clipboard.writeText(url);alert("Link do carrinho copiado! Envie para outra pessoa.")}catch(e){prompt("Copie este link e envie:",url)}
 }
 
-function selectCategory(name) {
-  activeCategory = name;
-  renderNavigation();
-  renderProducts();
-  document.getElementById("catalogTitle").scrollIntoView({behavior:"smooth",block:"start"});
+function checkout(){
+ const items=products.filter(p=>Number(cart[p.id])>0);
+ if(!items.length){alert("Seu carrinho está vazio.");return}
+ const total=items.reduce((s,p)=>s+p.p*Number(cart[p.id]),0);
+ let msg="Olá! Quero consultar este pedido da JAPA IMPORT:\n\n";
+ items.forEach(p=>msg+=`• ${p.n} | Quantidade: ${cart[p.id]} | ${money(p.p*Number(cart[p.id]))}\n`);
+ msg+=`\nTotal de referência: ${money(total)}\nPor favor, confirme preço, estoque e entrega.`;
+ if(WHATSAPP==="5511999999999"){prompt("Configure o número da loja no código. Copie a mensagem:",msg);return}
+ window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
 }
 
-function getFilteredProducts() {
-  const term = document.getElementById("searchInput").value.trim().toLowerCase();
-  let list = catalog.filter(p => {
-    const categoryMatch = activeCategory === "Todos" || p.cat === activeCategory;
-    const searchMatch = !term || (p.name + " " + p.cat + " " + p.desc).toLowerCase().includes(term);
-    return categoryMatch && searchMatch;
-  });
-
-  const sort = document.getElementById("sortSelect").value;
-  if (sort === "low") list.sort((a,b) => a.price - b.price);
-  if (sort === "high") list.sort((a,b) => b.price - a.price);
-  if (sort === "az") list.sort((a,b) => a.name.localeCompare(b.name, "pt-BR"));
-  return list;
-}
-
-function renderProducts() {
-  const list = getFilteredProducts();
-  document.getElementById("resultCount").textContent =
-    `${list.length} produto(s) encontrado(s)${activeCategory !== "Todos" ? " em " + activeCategory : ""}.`;
-
-  const grid = document.getElementById("productGrid");
-  if (!list.length) {
-    grid.innerHTML = `<div class="empty">Nenhum produto encontrado. Tente outra busca ou categoria.</div>`;
-    return;
-  }
-
-  grid.innerHTML = list.map(p => {
-    const imageUrl = images[p.img] || "";
-    return `<article class="product">
-      <div class="product-image">
-        ${imageUrl ? `<img src="${imageUrl}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="this.style.display='none'">` : ""}
-        <span class="product-emoji">${p.emoji}</span>
-        ${p.tag ? `<span class="tag">${escapeHTML(p.tag)}</span>` : ""}
-      </div>
-      <div class="product-info">
-        <span class="category-label">${escapeHTML(p.cat)}</span>
-        <h3>${escapeHTML(p.name)}</h3>
-        <div class="product-desc">${escapeHTML(p.desc)}</div>
-        <div class="price">${money(p.price)}</div>
-        <div class="price-note">Preço de referência • confirme disponibilidade</div>
-        <div class="product-actions">
-          <button class="add-btn" onclick="addToCart(${p.id})">Adicionar ao carrinho</button>
-          <a class="source-btn" href="https://www.comprasparaguai.com.br/busca/?q=${encodeURIComponent(p.name)}" target="_blank" rel="noopener">Comparar preço</a>
-        </div>
-      </div>
-    </article>`;
-  }).join("");
-}
-
-function addToCart(id) {
-  cart[id] = (Number(cart[id]) || 0) + 1;
-  saveCart();
-  updateCart();
-  showToast("Produto adicionado ao carrinho!");
-}
-
-function updateCart() {
-  const count = Object.values(cart).reduce((sum, qty) => sum + (Number(qty) || 0), 0);
-  document.getElementById("cartCount").textContent = count;
-
-  const items = catalog.filter(p => Number(cart[p.id]) > 0);
-  const container = document.getElementById("cartItems");
-
-  if (!items.length) {
-    container.innerHTML = `<div class="empty">Seu carrinho está vazio.<br><br>Adicione produtos para começar!</div>`;
-    document.getElementById("cartTotal").textContent = money(0);
-    return;
-  }
-
-  let total = 0;
-  container.innerHTML = items.map(p => {
-    const qty = Number(cart[p.id]);
-    total += p.price * qty;
-    return `<div class="cart-item">
-      <div><strong>${escapeHTML(p.name)}</strong>
-        <small>${money(p.price)} cada</small>
-        <div class="qty">
-          <button onclick="changeQty(${p.id},-1)">−</button>
-          <span>${qty}</span>
-          <button onclick="changeQty(${p.id},1)">+</button>
-          <button class="remove-btn" onclick="removeItem(${p.id})">Remover</button>
-        </div>
-      </div>
-      <strong>${money(p.price * qty)}</strong>
-    </div>`;
-  }).join("");
-
-  document.getElementById("cartTotal").textContent = money(total);
-}
-
-function changeQty(id, delta) {
-  cart[id] = (Number(cart[id]) || 0) + delta;
-  if (cart[id] <= 0) delete cart[id];
-  saveCart();
-  updateCart();
-}
-
-function removeItem(id) {
-  delete cart[id];
-  saveCart();
-  updateCart();
-}
-
-function clearCart() {
-  if (!Object.keys(cart).length) return;
-  if (confirm("Deseja limpar todos os produtos do carrinho?")) {
-    cart = {};
-    saveCart();
-    updateCart();
-  }
-}
-
-function openCart() {
-  document.getElementById("cartBackdrop").classList.add("open");
-  updateCart();
-}
-
-function closeCart() {
-  document.getElementById("cartBackdrop").classList.remove("open");
-}
-
-function backdropClose(event) {
-  if (event.target.id === "cartBackdrop") closeCart();
-}
-
-async function shareCart() {
-  const items = Object.entries(cart).filter(([id, qty]) => Number(qty) > 0);
-  if (!items.length) {
-    showToast("Adicione produtos antes de compartilhar.");
-    return;
-  }
-
-  const encoded = encodeURIComponent(JSON.stringify(cart));
-  const shareUrl = location.origin + location.pathname + "#carrinho=" + encoded;
-
-  try {
-    await navigator.clipboard.writeText(shareUrl);
-    showToast("Link do carrinho copiado! Envie para quem quiser.");
-  } catch (e) {
-    prompt("Copie o link abaixo e envie para a pessoa:", shareUrl);
-  }
-}
-
-function checkoutWhatsApp() {
-  const items = catalog.filter(p => Number(cart[p.id]) > 0);
-  if (!items.length) {
-    showToast("Seu carrinho está vazio.");
-    return;
-  }
-
-  const total = items.reduce((sum,p) => sum + p.price * Number(cart[p.id]), 0);
-  let message = "Olá! Quero consultar este pedido da JAPA IMPORT:\n\n";
-
-  items.forEach(p => {
-    message += `• ${p.name} | Qtd: ${cart[p.id]} | ${money(p.price * Number(cart[p.id]))}\n`;
-  });
-
-  message += `\nTotal de referência: ${money(total)}\n`;
-  message += "\nPor favor, confirme disponibilidade, preço final e condições de entrega.";
-
-  if (!WHATSAPP || WHATSAPP === "5511999999999") {
-    showToast("Configure o WhatsApp da loja no código antes de usar.");
-    prompt("Copie esta mensagem para enviar ao seu WhatsApp:", message);
-    return;
-  }
-
-  window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message), "_blank");
-}
-
-document.getElementById("searchInput").addEventListener("input", renderProducts);
 loadCart();
-renderNavigation();
-renderProducts();
+drawCategories();
+render();
 updateCart();
 </script>
 </body>
