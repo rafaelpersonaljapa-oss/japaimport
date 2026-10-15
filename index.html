@@ -3,217 +3,303 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JAPA IMPORT | Sua loja de importados</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAPA IMPORT | Sua loja online</title>
 <style>
-:root{--bg:#0b0b19;--panel:#17172d;--purple:#8b5cf6;--blue:#2563eb;--text:#f8fafc;--muted:#a6abc0;--green:#86efac}
+:root{--blue:#1748ff;--purple:#792cff;--dark:#101126;--light:#f5f5ff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-header{padding:24px 5%;background:linear-gradient(120deg,#171735,#26205b,#142b52)}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:28px;font-weight:900}.logo span{color:#a78bfa}
-button{cursor:pointer;font-weight:bold}
-.btn{border:0;border-radius:10px;padding:12px 16px;color:white;background:linear-gradient(90deg,var(--purple),var(--blue))}
-.hero{padding:28px 0 12px;max-width:760px}
-.hero h1{font-size:clamp(30px,5vw,46px);margin:0 0 12px}
-.hero h1 span{color:#a78bfa}
-.hero p{color:#d0d2e6;line-height:1.6}
-input{width:100%;padding:14px;background:#111126;color:white;border:1px solid #39395d;border-radius:10px;font-size:16px}
-main{padding:24px 5% 55px}
-.categories{display:flex;gap:9px;overflow-x:auto;padding:5px 0 22px}
-.cat{flex-shrink:0;background:var(--panel);border:1px solid #30304d;color:white;border-radius:22px;padding:10px 14px}
-.cat.active{background:linear-gradient(90deg,var(--purple),var(--blue))}
-.section{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0 20px}
-.section h2{margin:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:17px}
-.card{background:var(--panel);border:1px solid #292945;border-radius:14px;overflow:hidden}
-.card:hover{border-color:var(--purple)}
-.photo{display:block;width:100%;height:195px;object-fit:contain;padding:10px;background:white}
-.info{padding:14px}
-.tag{color:#b69cff;font-size:11px;font-weight:bold;text-transform:uppercase}
-h3{font-size:15px;line-height:1.4;min-height:40px;margin:9px 0}
-.old{font-size:12px;color:var(--muted)}
-.price{font-size:21px;color:var(--green);font-weight:800;margin:8px 0 12px}
-.add,.source{display:block;text-align:center;width:100%;padding:11px 5px;border:0;border-radius:8px;color:white;text-decoration:none;margin-top:8px;font-size:13px}
-.add{background:linear-gradient(90deg,#7c3aed,#2563eb)}
-.source{background:#292945;border:1px solid #414166}
-.note{font-size:12px;color:var(--muted);line-height:1.5}
-footer{text-align:center;border-top:1px solid #292945;padding:25px;color:var(--muted);line-height:1.8}
-.modal{display:none;position:fixed;inset:0;z-index:5;background:#000b;justify-content:center;align-items:center;padding:15px}
-.modal.open{display:flex}
-.modal-content{background:#17172d;border:1px solid #39395d;border-radius:16px;padding:22px;width:100%;max-width:540px;max-height:85vh;overflow:auto}
-.modal-head{display:flex;justify-content:space-between;align-items:center}
-.close{font-size:28px;background:none;border:0;color:white}
-.cart-item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #30304d;padding:12px 0}
-.secondary{background:#292945;color:white;border:1px solid #414166;border-radius:8px;padding:8px 12px}
-.total{font-size:22px;font-weight:bold;margin:20px 0}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.actions button{width:100%}
-@media(max-width:500px){header,main{padding-left:4%;padding-right:4%}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:145px}.info{padding:9px}h3{font-size:13px}.price{font-size:17px}.add,.source{font-size:11px}}
+body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:#191932}
+header{background:linear-gradient(120deg,#11143c,#1748ff,#792cff);color:white;padding:25px 5%}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:28px;font-weight:900;letter-spacing:1px}
+.logo span{color:#a8d7ff}
+header p{margin:8px 0 20px;color:#e4e7ff}
+.search{width:100%;padding:14px;border:0;border-radius:12px;font-size:16px}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+nav button,.btn{border:0;padding:11px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
+nav button{background:#ffffff20;color:white}
+nav button.active,nav button:hover{background:white;color:#3022c7}
+.hero{margin:22px auto;padding:32px 5%;background:linear-gradient(120deg,#e6eaff,#f3e5ff);border-radius:20px;max-width:1400px}
+.hero h1{font-size:clamp(27px,4vw,44px);margin:0 0 12px;color:#17174b}
+.hero p{line-height:1.6}
+.btn{background:linear-gradient(110deg,var(--blue),var(--purple));color:white}
+main{max-width:1400px;margin:auto;padding:0 5% 40px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:white;border-radius:17px;overflow:hidden;box-shadow:0 5px 20px #1a1a4810;display:flex;flex-direction:column}
+.card img{width:100%;height:190px;object-fit:cover;background:#eee}
+.card-content{padding:15px;display:flex;flex-direction:column;flex:1}
+.tag{font-size:11px;color:#6c38db;font-weight:bold;text-transform:uppercase}
+.card h3{font-size:16px;line-height:1.4;min-height:44px;margin:9px 0}
+.price{font-size:23px;color:#4528d9;font-weight:900}
+.old{color:#888;text-decoration:line-through;font-size:13px;margin-top:8px}
+.card .btn{margin-top:13px;width:100%}
+#cartPanel{background:white;padding:22px;border-radius:17px;margin:25px 0;box-shadow:0 5px 20px #1a1a4810}
+.cart-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:12px 0}
+.cart-item button{border:0;border-radius:7px;padding:7px;cursor:pointer}
+.cart-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+footer{text-align:center;background:#11143c;color:white;padding:25px}
+small{color:#777}
+.empty{padding:25px;text-align:center;color:#777}
+@media(max-width:480px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img{height:135px}.card-content{padding:10px}.card h3{font-size:14px}.price{font-size:18px}.logo{font-size:23px}}
 </style>
 </head>
 <body>
+
 <header>
   <div class="top">
     <div class="logo">JAPA <span>IMPORT</span></div>
-    <button class="btn" onclick="openCart()">🛒 Carrinho (<span id="count">0</span>)</button>
+    <button class="btn" onclick="mostrarCarrinho()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
   </div>
-  <div class="hero">
-    <h1>Tecnologia, casa e beleza em um só lugar</h1>
-    <p>Celulares, fones, eletrodomésticos, utensílios de cozinha, perfumes e muito mais.</p>
-    <input id="search" type="search" placeholder="🔎 Buscar produtos..." oninput="render()">
-  </div>
+  <p>Encontre perfumes, eletrônicos e muito mais!</p>
+  <input class="search" id="search" placeholder="🔎 Buscar produtos..." oninput="renderizar()">
+  <nav id="categories"></nav>
 </header>
 
+<section class="hero">
+  <h1>Seu próximo produto está aqui!</h1>
+  <p>✨ Variedade de produtos, ofertas e novidades para você.<br>
+  🛍️ Escolha seus produtos, monte seu carrinho e envie seu pedido pelo WhatsApp.</p>
+  <button class="btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver produtos</button>
+</section>
+
 <main>
-  <nav class="categories" id="categories"></nav>
-  <div class="section">
-    <h2>✨ Produtos em destaque</h2>
-    <span id="quantity" class="note"></span>
-  </div>
-  <div id="products" class="grid"></div>
-  <p class="note" style="margin-top:25px">
-    Os preços são estimativas de referência acrescidas de 25%, não cotações ao vivo.
-    As imagens são ilustrativas. Confirme modelo, disponibilidade, impostos, garantia e frete antes da compra.
-  </p>
-  <p><a href="https://www.comprasparaguai.com.br/" target="_blank" rel="noopener" style="color:#b69cff">Consultar produtos no Compras Paraguai ↗</a></p>
+  <section id="cartPanel" hidden>
+    <div class="section-title">
+      <h2>🛒 Meu carrinho</h2>
+      <button class="btn" onclick="mostrarCarrinho()">Fechar</button>
+    </div>
+    <div id="cartItems"></div>
+    <h3>Total: <span id="cartTotal">R$ 0,00</span></h3>
+    <div class="cart-actions">
+      <button class="btn" onclick="finalizarPedido()">📲 Finalizar pelo WhatsApp</button>
+      <button class="btn" onclick="compartilharCarrinho()">🔗 Compartilhar carrinho</button>
+      <button class="btn" onclick="limparCarrinho()">Limpar carrinho</button>
+    </div>
+    <small>O pedido será enviado para confirmação pelo WhatsApp.</small>
+  </section>
+
+  <section id="catalogo">
+    <div class="section-title">
+      <h2>🛍️ Nossos produtos</h2>
+      <span id="productCount"></span>
+    </div>
+    <div class="products" id="products"></div>
+  </section>
 </main>
 
 <footer>
-  <strong>JAPA IMPORT</strong><br>
-  Sua loja de importados.<br>
-  Atendimento e pedidos pelo WhatsApp.
+  <h2>JAPA IMPORT</h2>
+  <p>Perfumes • Celulares • Eletrônicos • Casa e cozinha</p>
+  <p>Faça seu pedido pelo WhatsApp: (11) 97021-8569</p>
+  <small>Preços e disponibilidade sujeitos à confirmação.</small>
 </footer>
 
-<div class="modal" id="modal" onclick="outside(event)">
-  <div class="modal-content">
-    <div class="modal-head">
-      <h2>🛒 Meu carrinho</h2>
-      <button class="close" onclick="closeCart()">×</button>
-    </div>
-    <div id="items"></div>
-    <div class="total">Total: <span id="total">R$ 0,00</span></div>
-    <div class="actions">
-      <button class="secondary" onclick="shareCart()">🔗 Compartilhar carrinho</button>
-      <button class="secondary" onclick="clearCart()">🗑️ Limpar carrinho</button>
-    </div>
-    <button class="btn" style="width:100%;margin-top:12px" onclick="checkout()">Finalizar pedido no WhatsApp</button>
-  </div>
-</div>
-
 <script>
-// WhatsApp informado para receber os pedidos.
 const WHATSAPP = "5511970218569";
+const TAXA = 1.25;
 
-// Valores-base de exemplo em reais. O site calcula automaticamente +25%.
-// Substitua os valores pelos preços reais que você confirmar.
-const rawProducts = [
- {id:1,n:"iPhone 16 128GB",c:"Celulares",b:4000,img:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80"},
- {id:2,n:"iPhone 16 Pro",c:"Celulares",b:5500,img:"https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=600&q=80"},
- {id:3,n:"Samsung Galaxy",c:"Celulares",b:1800,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"},
- {id:4,n:"Xiaomi Redmi",c:"Celulares",b:1200,img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"},
- {id:5,n:"Fone Bluetooth TWS",c:"Fones e áudio",b:80,img:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=600&q=80"},
- {id:6,n:"Apple AirPods",c:"Fones e áudio",b:900,img:"https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?auto=format&fit=crop&w=600&q=80"},
- {id:7,n:"Headset gamer",c:"Fones e áudio",b:180,img:"https://images.unsplash.com/photo-1599669454699-248893623440?auto=format&fit=crop&w=600&q=80"},
- {id:8,n:"Caixa de som Bluetooth",c:"Fones e áudio",b:220,img:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"},
- {id:9,n:"Air Fryer compacta",c:"Eletrodomésticos",b:250,img:"https://images.unsplash.com/photo-1648128299567-3d9a7e9f7a16?auto=format&fit=crop&w=600&q=80"},
- {id:10,n:"Liquidificador",c:"Eletrodomésticos",b:180,img:"https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80"},
- {id:11,n:"Cafeteira elétrica",c:"Eletrodomésticos",b:220,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"},
- {id:12,n:"Batedeira",c:"Eletrodomésticos",b:190,img:"https://images.unsplash.com/photo-1578643463396-0997cb5328c1?auto=format&fit=crop&w=600&q=80"},
- {id:13,n:"Mixer de cozinha",c:"Eletrodomésticos",b:120,img:"https://images.unsplash.com/photo-1585515320310-259814833e62?auto=format&fit=crop&w=600&q=80"},
- {id:14,n:"Sanduicheira elétrica",c:"Eletrodomésticos",b:100,img:"https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=80"},
- {id:15,n:"Panela elétrica",c:"Eletrodomésticos",b:180,img:"https://images.unsplash.com/photo-1584990347449-a8e6f3c9f7f4?auto=format&fit=crop&w=600&q=80"},
- {id:16,n:"Jogo de panelas",c:"Utensílios de cozinha",b:250,img:"https://images.unsplash.com/photo-1584990347449-a8e6f3c9f7f4?auto=format&fit=crop&w=600&q=80"},
- {id:17,n:"Conjunto de facas",c:"Utensílios de cozinha",b:90,img:"https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=600&q=80"},
- {id:18,n:"Kit utensílios de silicone",c:"Utensílios de cozinha",b:60,img:"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"},
- {id:19,n:"Garrafa térmica",c:"Utensílios de cozinha",b:75,img:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80"},
- {id:20,n:"Potes herméticos",c:"Utensílios de cozinha",b:55,img:"https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=600&q=80"},
- {id:21,n:"Notebook",c:"Informática",b:3000,img:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80"},
- {id:22,n:"Tablet",c:"Informática",b:1000,img:"https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=600&q=80"},
- {id:23,n:"Monitor para computador",c:"Informática",b:800,img:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=600&q=80"},
- {id:24,n:"Teclado e mouse",c:"Informática",b:150,img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"},
- {id:25,n:"Smart TV",c:"TV e vídeo",b:1800,img:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=600&q=80"},
- {id:26,n:"Relógio inteligente",c:"Relógios",b:280,img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"},
- {id:27,n:"Perfume Malbec",c:"Perfumes",b:180,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
- {id:28,n:"Perfume One Million",c:"Perfumes",b:450,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
- {id:29,n:"Perfume 212",c:"Perfumes",b:420,img:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"},
- {id:30,n:"Perfume árabe Lattafa",c:"Perfumes",b:130,img:"https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=600&q=80"},
- {id:31,n:"Aspirador de pó",c:"Eletrodomésticos",b:400,img:"https://images.unsplash.com/photo-1558317374-067fb5f30001?auto=format&fit=crop&w=600&q=80"},
- {id:32,n:"Secador de cabelo",c:"Beleza",b:150,img:"https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=600&q=80"},
- {id:33,n:"Escova secadora",c:"Beleza",b:170,img:"https://images.unsplash.com/photo-1522338140262-f46f5913618a?auto=format&fit=crop&w=600&q=80"},
- {id:34,n:"Câmera digital",c:"Câmeras e drones",b:1800,img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=600&q=80"},
- {id:35,n:"Controle gamer",c:"Games",b:300,img:"https://images.unsplash.com/photo-1486401899868-0e435ed85128?auto=format&fit=crop&w=600&q=80"},
- {id:36,n:"Mochila",c:"Acessórios",b:120,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"}
+// Valores-base ilustrativos; o preço exibido recebe acréscimo de 25%.
+const produtos = [
+{id:1,nome:"Perfume Importado Club de Nuit",cat:"Perfumes",base:220,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
+{id:2,nome:"Perfume Importado Feminino",cat:"Perfumes",base:180,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
+{id:3,nome:"Perfume Importado Masculino",cat:"Perfumes",base:250,img:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"},
+{id:4,nome:"Perfume Versace Dylan Blue",cat:"Perfumes",base:350,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
+{id:5,nome:"Perfume Paco Rabanne",cat:"Perfumes",base:420,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
+{id:6,nome:"Perfume Carolina Herrera",cat:"Perfumes",base:390,img:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80"},
+{id:7,nome:"Perfume Dior Sauvage",cat:"Perfumes",base:480,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
+{id:8,nome:"Perfume Importado Unissex",cat:"Perfumes",base:290,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
+
+{id:9,nome:"Smartphone Samsung Galaxy",cat:"Celulares",base:1200,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"},
+{id:10,nome:"iPhone - consulte modelos",cat:"Celulares",base:3500,img:"https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=600&q=80"},
+{id:11,nome:"Smartphone Xiaomi Redmi",cat:"Celulares",base:950,img:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"},
+{id:12,nome:"Celular Motorola Moto",cat:"Celulares",base:1100,img:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"},
+
+{id:13,nome:"Fone Bluetooth sem fio",cat:"Eletrônicos",base:90,img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"},
+{id:14,nome:"Fone Bluetooth Premium",cat:"Eletrônicos",base:180,img:"https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80"},
+{id:15,nome:"Caixa de som Bluetooth",cat:"Eletrônicos",base:160,img:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=600&q=80"},
+{id:16,nome:"Smartwatch esportivo",cat:"Eletrônicos",base:220,img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"},
+{id:17,nome:"Carregador rápido USB-C",cat:"Eletrônicos",base:45,img:"https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80"},
+{id:18,nome:"Power Bank portátil",cat:"Eletrônicos",base:100,img:"https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?auto=format&fit=crop&w=600&q=80"},
+{id:19,nome:"Teclado para computador",cat:"Eletrônicos",base:130,img:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"},
+{id:20,nome:"Mouse sem fio",cat:"Eletrônicos",base:65,img:"https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=600&q=80"},
+{id:21,nome:"Webcam para computador",cat:"Eletrônicos",base:140,img:"https://images.unsplash.com/photo-1587826080692-f439cd0b70da?auto=format&fit=crop&w=600&q=80"},
+{id:22,nome:"Controle para videogame",cat:"Eletrônicos",base:210,img:"https://images.unsplash.com/photo-1592840496694-26d035b52b48?auto=format&fit=crop&w=600&q=80"},
+
+{id:23,nome:"Air Fryer",cat:"Eletrodomésticos",base:350,img:"https://images.unsplash.com/photo-1648146299048-2d3d4d9a2a9c?auto=format&fit=crop&w=600&q=80"},
+{id:24,nome:"Liquidificador",cat:"Eletrodomésticos",base:160,img:"https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80"},
+{id:25,nome:"Cafeteira elétrica",cat:"Eletrodomésticos",base:190,img:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80"},
+{id:26,nome:"Batedeira de cozinha",cat:"Eletrodomésticos",base:230,img:"https://images.unsplash.com/photo-1578643463396-0997cb5328c1?auto=format&fit=crop&w=600&q=80"},
+{id:27,nome:"Sanduicheira elétrica",cat:"Eletrodomésticos",base:100,img:"https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=600&q=80"},
+{id:28,nome:"Ventilador portátil",cat:"Eletrodomésticos",base:120,img:"https://images.unsplash.com/photo-1618941716939-553df3c6c278?auto=format&fit=crop&w=600&q=80"},
+
+{id:29,nome:"Jogo de panelas",cat:"Casa e cozinha",base:280,img:"https://images.unsplash.com/photo-1584990347449-a7f7d1f2e6a9?auto=format&fit=crop&w=600&q=80"},
+{id:30,nome:"Conjunto de utensílios",cat:"Casa e cozinha",base:85,img:"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"},
+{id:31,nome:"Garrafa térmica",cat:"Casa e cozinha",base:75,img:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80"},
+{id:32,nome:"Organizadores para cozinha",cat:"Casa e cozinha",base:60,img:"https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=600&q=80"},
+{id:33,nome:"Jogo de copos",cat:"Casa e cozinha",base:55,img:"https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=600&q=80"},
+{id:34,nome:"Balança digital de cozinha",cat:"Casa e cozinha",base:65,img:"https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80"},
+{id:35,nome:"Luminária decorativa",cat:"Casa e cozinha",base:90,img:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80"},
+{id:36,nome:"Mochila para notebook",cat:"Acessórios",base:140,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80"}
 ];
 
-// +25% sobre cada valor-base.
-const products=rawProducts.map(p=>({...p,price:Math.round(p.b*1.25*100)/100}));
-const cats=["Todos",...new Set(products.map(p=>p.c))];
-let selected="Todos",cart={};
+let categoriaAtual = "Todos";
+let carrinho = JSON.parse(localStorage.getItem("japaCarrinho") || "[]");
 
-function money(n){return n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});}
-function makeCats(){
- document.getElementById("categories").innerHTML=cats.map(c=>
- `<button class="cat ${c===selected?"active":""}" onclick="selectCat(${JSON.stringify(c)})">${c}</button>`
- ).join("");
+function moeda(valor){
+  return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
-function selectCat(c){selected=c;makeCats();render();}
-function render(){
- const q=document.getElementById("search").value.toLocaleLowerCase("pt-BR");
- const list=products.filter(p=>(selected==="Todos"||p.c===selected)&&(p.n+" "+p.c).toLocaleLowerCase("pt-BR").includes(q));
- document.getElementById("quantity").textContent=list.length+" produtos";
- document.getElementById("products").innerHTML=list.length?list.map(p=>`
- <article class="card">
- <img class="photo" src="${p.img}" alt="${p.n}" loading="lazy"
- onerror="this.onerror=null;this.src='https://placehold.co/600x450/f1f5f9/334155?text=JAPA+IMPORT'">
- <div class="info">
- <div class="tag">${p.c}</div><h3>${p.n}</h3>
- <div class="old">Preço de referência: ${money(p.b)}</div>
- <div class="price">${money(p.price)}</div>
- <button class="add" onclick="add(${p.id})">🛒 Adicionar ao carrinho</button>
- <a class="source" href="https://www.comprasparaguai.com.br/busca/?q=${encodeURIComponent(p.n)}" target="_blank" rel="noopener">Consultar produto ↗</a>
- </div></article>`).join(""):'<p>Nenhum produto encontrado.</p>';
+function preco(p){
+  return Math.round(p.base*TAXA*100)/100;
 }
-function add(id){cart[id]=(cart[id]||0)+1;updateCart();}
-function removeOne(id){if(!cart[id])return;cart[id]--;if(cart[id]<=0)delete cart[id];updateCart();}
-function updateCart(){
- document.getElementById("count").textContent=Object.values(cart).reduce((a,b)=>a+b,0);
- const list=products.filter(p=>cart[p.id]);
- document.getElementById("items").innerHTML=list.length?list.map(p=>`
- <div class="cart-item"><div><strong>${p.n}</strong><br><small>${cart[p.id]} × ${money(p.price)}</small></div>
- <div><strong>${money(p.price*cart[p.id])}</strong><br>
- <button class="secondary" onclick="removeOne(${p.id})">−</button>
- <button class="secondary" onclick="add(${p.id})">+</button></div></div>`).join(""):'<p>Seu carrinho está vazio.</p>';
- document.getElementById("total").textContent=money(list.reduce((s,p)=>s+p.price*cart[p.id],0));
+function salvarCarrinho(){
+  localStorage.setItem("japaCarrinho",JSON.stringify(carrinho));
+  atualizarContador();
 }
-function openCart(){document.getElementById("modal").classList.add("open");updateCart();}
-function closeCart(){document.getElementById("modal").classList.remove("open");}
-function outside(e){if(e.target.id==="modal")closeCart();}
-function clearCart(){cart={};updateCart();}
-function shareCart(){
- if(!Object.keys(cart).length){alert("Adicione produtos antes de compartilhar.");return;}
- const url=location.origin+location.pathname+"#carrinho="+btoa(unescape(encodeURIComponent(JSON.stringify(cart))));
- if(navigator.share)navigator.share({title:"Carrinho JAPA IMPORT",url}).catch(()=>{});
- else if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(url).then(()=>alert("Link copiado! Envie para a pessoa.")).catch(()=>prompt("Copie o link:",url));
- else prompt("Copie o link:",url);
+function atualizarContador(){
+  document.getElementById("cartCount").textContent =
+    carrinho.reduce((s,i)=>s+i.qtd,0);
 }
-function loadSharedCart(){
- const m=location.hash.match(/#carrinho=(.+)/);if(!m)return;
- try{
- const shared=JSON.parse(decodeURIComponent(escape(atob(m[1]))));cart={};
- products.forEach(p=>{const n=Number(shared[p.id]);if(Number.isInteger(n)&&n>0&&n<100)cart[p.id]=n;});
- updateCart();if(Object.keys(cart).length)openCart();
- }catch(e){console.log("Link de carrinho inválido.");}
+function montarCategorias(){
+  const cats=["Todos",...new Set(produtos.map(p=>p.cat))];
+  document.getElementById("categories").innerHTML=cats.map(c=>
+    `<button class="${c===categoriaAtual?"active":""}" onclick="selecionarCategoria('${c}')">${c}</button>`
+  ).join("");
 }
-function checkout(){
- const list=products.filter(p=>cart[p.id]);
- if(!list.length){alert("Seu carrinho está vazio.");return;}
- const lines=list.map(p=>`${cart[p.id]} x ${p.n} - ${money(p.price*cart[p.id])}`);
- const total=list.reduce((s,p)=>s+p.price*cart[p.id],0);
- const msg=`Olá! Quero fazer um pedido na JAPA IMPORT:\n\n${lines.join("\n")}\n\nTotal: ${money(total)}\n\nGostaria de confirmar disponibilidade, frete e prazo.`;
- window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg),"_blank");
+function selecionarCategoria(c){
+  categoriaAtual=c;
+  montarCategorias();
+  renderizar();
 }
-makeCats();render();updateCart();loadSharedCart();
+function renderizar(){
+  const busca=document.getElementById("search").value.toLowerCase();
+  const lista=produtos.filter(p=>
+    (categoriaAtual==="Todos"||p.cat===categoriaAtual)&&
+    p.nome.toLowerCase().includes(busca)
+  );
+  document.getElementById("productCount").textContent=lista.length+" produtos";
+  document.getElementById("products").innerHTML=lista.map(p=>`
+    <article class="card">
+      <img src="${p.img}" alt="${p.nome}" loading="lazy"
+        onerror="this.onerror=null;this.src='https://placehold.co/600x400/eee/333?text=JAPA+IMPORT'">
+      <div class="card-content">
+        <span class="tag">${p.cat}</span>
+        <h3>${p.nome}</h3>
+        <div class="old">Base: ${moeda(p.base)}</div>
+        <div class="price">${moeda(preco(p))}</div>
+        <small>Preço com acréscimo de 25%</small>
+        <button class="btn" onclick="adicionar(${p.id})">Adicionar ao carrinho</button>
+        <button class="btn" style="margin-top:7px;background:#222" onclick="consultar(${p.id})">Consultar produto</button>
+      </div>
+    </article>`).join("");
+  if(!lista.length)document.getElementById("products").innerHTML='<p class="empty">Nenhum produto encontrado.</p>';
+}
+function adicionar(id){
+  const item=carrinho.find(i=>i.id===id);
+  if(item)item.qtd++;
+  else carrinho.push({id,qtd:1});
+  salvarCarrinho();
+  alert("Produto adicionado ao carrinho!");
+}
+function mostrarCarrinho(){
+  const painel=document.getElementById("cartPanel");
+  painel.hidden=!painel.hidden;
+  atualizarCarrinho();
+  if(!painel.hidden)painel.scrollIntoView({behavior:"smooth"});
+}
+function atualizarCarrinho(){
+  const area=document.getElementById("cartItems");
+  if(!carrinho.length){
+    area.innerHTML='<p class="empty">Seu carrinho está vazio.</p>';
+  }else{
+    area.innerHTML=carrinho.map(i=>{
+      const p=produtos.find(p=>p.id===i.id);
+      if(!p)return "";
+      return `<div class="cart-item">
+        <div><strong>${p.nome}</strong><br>${moeda(preco(p))} × ${i.qtd}<br>
+        <strong>${moeda(preco(p)*i.qtd)}</strong></div>
+        <div>
+          <button onclick="mudarQtd(${i.id},-1)">−</button>
+          <button onclick="mudarQtd(${i.id},1)">+</button>
+          <button onclick="remover(${i.id})">🗑️</button>
+        </div>
+      </div>`;
+    }).join("");
+  }
+  document.getElementById("cartTotal").textContent=moeda(
+    carrinho.reduce((s,i)=>s+preco(produtos.find(p=>p.id===i.id))*i.qtd,0)
+  );
+}
+function mudarQtd(id,n){
+  const item=carrinho.find(i=>i.id===id);
+  if(!item)return;
+  item.qtd+=n;
+  if(item.qtd<=0)carrinho=carrinho.filter(i=>i.id!==id);
+  salvarCarrinho();atualizarCarrinho();
+}
+function remover(id){
+  carrinho=carrinho.filter(i=>i.id!==id);
+  salvarCarrinho();atualizarCarrinho();
+}
+function limparCarrinho(){
+  if(confirm("Deseja limpar todo o carrinho?")){
+    carrinho=[];salvarCarrinho();atualizarCarrinho();
+  }
+}
+function textoPedido(){
+  if(!carrinho.length)return "";
+  let texto="Olá! Quero fazer um pedido na JAPA IMPORT:%0A%0A";
+  carrinho.forEach(i=>{
+    const p=produtos.find(p=>p.id===i.id);
+    if(p)texto+=`• ${p.nome} - ${i.qtd} un. - ${moeda(preco(p)*i.qtd)}%0A`;
+  });
+  const total=carrinho.reduce((s,i)=>s+preco(produtos.find(p=>p.id===i.id))*i.qtd,0);
+  texto+=`%0A*Total estimado: ${moeda(total)}*%0A`;
+  texto+="Por favor, confirme disponibilidade, preço e entrega.";
+  return texto;
+}
+function finalizarPedido(){
+  if(!carrinho.length){alert("Adicione produtos ao carrinho primeiro.");return;}
+  window.open("https://wa.me/"+WHATSAPP+"?text="+textoPedido(),"_blank");
+}
+function compartilharCarrinho(){
+  if(!carrinho.length){alert("Seu carrinho está vazio.");return;}
+  const dados=btoa(unescape(encodeURIComponent(JSON.stringify(carrinho))));
+  const link=location.origin+location.pathname+"?carrinho="+encodeURIComponent(dados);
+  if(navigator.share){
+    navigator.share({title:"Meu carrinho JAPA IMPORT",text:"Veja meu carrinho:",url:link}).catch(()=>copiarLink(link));
+  }else copiarLink(link);
+}
+function copiarLink(link){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(link).then(()=>alert("Link do carrinho copiado! Envie para quem quiser."));
+  }else prompt("Copie e envie este link:",link);
+}
+function consultar(id){
+  const p=produtos.find(p=>p.id===id);
+  if(p)window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Olá! Gostaria de consultar o produto "+p.nome+" ("+moeda(preco(p))+"). Está disponível?"),"_blank");
+}
+function carregarCarrinhoCompartilhado(){
+  const params=new URLSearchParams(location.search);
+  const dados=params.get("carrinho");
+  if(!dados)return;
+  try{
+    const recebidos=JSON.parse(decodeURIComponent(escape(atob(dados))));
+    if(Array.isArray(recebidos)){
+      carrinho=recebidos.filter(i=>produtos.some(p=>p.id===i.id)&&Number(i.qtd)>0);
+      salvarCarrinho();
+      atualizarCarrinho();
+      if(carrinho.length){
+        document.getElementById("cartPanel").hidden=false;
+      }
+    }
+  }catch(e){console.log("Não foi possível ler o carrinho compartilhado.");}
+}
+montarCategorias();
+renderizar();
+atualizarContador();
+atualizarCarrinho();
+carregarCarrinhoCompartilhado();
 </script>
 </body>
 </html>
