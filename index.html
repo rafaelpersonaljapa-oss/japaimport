@@ -5,62 +5,251 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JAPA IMPORT | Sua loja online</title>
+
 <style>
-:root{--blue:#1748ff;--purple:#792cff;--dark:#101126;--light:#f5f5ff}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--light);color:#191932}
-header{background:linear-gradient(120deg,#11143c,#1748ff,#792cff);color:white;padding:25px 5%}
-.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.logo{font-size:28px;font-weight:900;letter-spacing:1px}
-.logo span{color:#a8d7ff}
-header p{margin:8px 0 20px;color:#e4e7ff}
-.search{width:100%;padding:14px;border:0;border-radius:12px;font-size:16px}
-nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
-nav button,.btn{border:0;padding:11px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
-nav button{background:#ffffff20;color:white}
-nav button.active,nav button:hover{background:white;color:#3022c7}
-.hero{margin:22px auto;padding:32px 5%;background:linear-gradient(120deg,#e6eaff,#f3e5ff);border-radius:20px;max-width:1400px}
-.hero h1{font-size:clamp(27px,4vw,44px);margin:0 0 12px;color:#17174b}
-.hero p{line-height:1.6}
-.btn{background:linear-gradient(110deg,var(--blue),var(--purple));color:white}
-main{max-width:1400px;margin:auto;padding:0 5% 40px}
-.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
-.card{background:white;border-radius:17px;overflow:hidden;box-shadow:0 5px 20px #1a1a4810;display:flex;flex-direction:column}
-.card img{width:100%;height:190px;object-fit:cover;background:#eee}
-.card-content{padding:15px;display:flex;flex-direction:column;flex:1}
-.tag{font-size:11px;color:#6c38db;font-weight:bold;text-transform:uppercase}
-.card h3{font-size:16px;line-height:1.4;min-height:44px;margin:9px 0}
-.price{font-size:23px;color:#4528d9;font-weight:900}
-.old{color:#888;text-decoration:line-through;font-size:13px;margin-top:8px}
-.card .btn{margin-top:13px;width:100%}
-#cartPanel{background:white;padding:22px;border-radius:17px;margin:25px 0;box-shadow:0 5px 20px #1a1a4810}
-.cart-item{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #eee;padding:12px 0}
-.cart-item button{border:0;border-radius:7px;padding:7px;cursor:pointer}
-.cart-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
-footer{text-align:center;background:#11143c;color:white;padding:25px}
-small{color:#777}
-.empty{padding:25px;text-align:center;color:#777}
-@media(max-width:480px){.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card img{height:135px}.card-content{padding:10px}.card h3{font-size:14px}.price{font-size:18px}.logo{font-size:23px}}
+:root {
+  --blue: #1748ff;
+  --purple: #792cff;
+  --dark: #101126;
+  --light: #f5f5ff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: #191932;
+}
+header {
+  background: linear-gradient(120deg,#11143c,#1748ff,#792cff);
+  color: white;
+  padding: 25px 5%;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.logo span { color: #a8d7ff; }
+header p { margin: 8px 0 20px; color: #e4e7ff; }
+.search {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 16px;
+}
+nav {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+nav button, .btn {
+  border: 0;
+  padding: 11px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+nav button { background: #ffffff20; color: white; }
+nav button.active, nav button:hover {
+  background: white;
+  color: #3022c7;
+}
+.hero {
+  margin: 22px auto;
+  padding: 32px 5%;
+  background: linear-gradient(120deg,#e6eaff,#f3e5ff);
+  border-radius: 20px;
+  max-width: 1400px;
+}
+.hero h1 {
+  font-size: clamp(27px,4vw,44px);
+  margin: 0 0 12px;
+  color: #17174b;
+}
+.hero p { line-height: 1.6; }
+.btn {
+  background: linear-gradient(110deg,var(--blue),var(--purple));
+  color: white;
+}
+main {
+  max-width: 1400px;
+  margin: auto;
+  padding: 0 5% 40px;
+}
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 18px;
+}
+.card {
+  background: white;
+  border-radius: 17px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #1a1a4810;
+  display: flex;
+  flex-direction: column;
+}
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  background: #eee;
+}
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.tag {
+  font-size: 11px;
+  color: #6c38db;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.card h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  min-height: 44px;
+  margin: 9px 0;
+}
+.price {
+  font-size: 23px;
+  color: #4528d9;
+  font-weight: 900;
+}
+.old {
+  color: #888;
+  text-decoration: line-through;
+  font-size: 13px;
+  margin-top: 8px;
+}
+.card .btn { margin-top: 13px; width: 100%; }
+
+/* DESTAQUE DOS PRODUTOS MAIS BARATOS */
+.ofertas-section {
+  margin: 25px 0 35px;
+  padding: 22px;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#fff3d6,#ffe4ef);
+  border: 2px solid #ffd36a;
+}
+.ofertas-titulo {
+  color: #713b00;
+  font-size: 25px;
+  margin: 0 0 8px;
+}
+.ofertas-descricao {
+  color: #6b4b32;
+  margin-bottom: 20px;
+}
+.selo-barato {
+  display: inline-block;
+  background: #e5ffe9;
+  color: #08752c;
+  border: 1px solid #a5eab5;
+  border-radius: 7px;
+  padding: 6px 9px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+#cartPanel {
+  background: white;
+  padding: 22px;
+  border-radius: 17px;
+  margin: 25px 0;
+  box-shadow: 0 5px 20px #1a1a4810;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+.cart-item button {
+  border: 0;
+  border-radius: 7px;
+  padding: 7px;
+  cursor: pointer;
+}
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.empty { padding: 25px; text-align: center; color: #777; }
+footer {
+  text-align: center;
+  background: #11143c;
+  color: white;
+  padding: 25px;
+}
+small { color: #777; }
+
+@media(max-width:480px) {
+  .products {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 10px;
+  }
+  .card img { height: 135px; }
+  .card-content { padding: 10px; }
+  .card h3 { font-size: 14px; }
+  .price { font-size: 18px; }
+  .logo { font-size: 23px; }
+  .ofertas-section { padding: 12px; }
+}
 </style>
 </head>
-<body>
 
+<body>
 <header>
   <div class="top">
     <div class="logo">JAPA <span>IMPORT</span></div>
-    <button class="btn" onclick="mostrarCarrinho()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
+    <button class="btn" onclick="mostrarCarrinho()">
+      🛒 Carrinho (<span id="cartCount">0</span>)
+    </button>
   </div>
+
   <p>Encontre perfumes, eletrônicos e muito mais!</p>
-  <input class="search" id="search" placeholder="🔎 Buscar produtos..." oninput="renderizar()">
+
+  <input class="search" id="search"
+    placeholder="🔎 Buscar produtos..."
+    oninput="renderizar()">
+
   <nav id="categories"></nav>
 </header>
 
 <section class="hero">
   <h1>Seu próximo produto está aqui!</h1>
-  <p>✨ Variedade de produtos, ofertas e novidades para você.<br>
-  🛍️ Escolha seus produtos, monte seu carrinho e envie seu pedido pelo WhatsApp.</p>
-  <button class="btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Ver produtos</button>
+  <p>
+    ✨ Variedade de produtos, ofertas e novidades para você.<br>
+    🛍️ Escolha seus produtos, monte seu carrinho e envie seu pedido pelo WhatsApp.
+  </p>
+  <button class="btn"
+    onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+    Ver produtos
+  </button>
 </section>
 
 <main>
@@ -69,8 +258,10 @@ small{color:#777}
       <h2>🛒 Meu carrinho</h2>
       <button class="btn" onclick="mostrarCarrinho()">Fechar</button>
     </div>
+
     <div id="cartItems"></div>
     <h3>Total: <span id="cartTotal">R$ 0,00</span></h3>
+
     <div class="cart-actions">
       <button class="btn" onclick="finalizarPedido()">📲 Finalizar pelo WhatsApp</button>
       <button class="btn" onclick="compartilharCarrinho()">🔗 Compartilhar carrinho</button>
@@ -79,6 +270,16 @@ small{color:#777}
     <small>O pedido será enviado para confirmação pelo WhatsApp.</small>
   </section>
 
+  <!-- DESTAQUE AUTOMÁTICO DOS 8 MAIS BARATOS -->
+  <section class="ofertas-section" id="ofertas">
+    <h2 class="ofertas-titulo">💰 Os mais baratos da loja</h2>
+    <p class="ofertas-descricao">
+      Mais economia para você! Confira nossos produtos de menor preço.
+    </p>
+    <div class="products" id="produtosBaratos"></div>
+  </section>
+
+  <!-- CATÁLOGO COMPLETO -->
   <section id="catalogo">
     <div class="section-title">
       <h2>🛍️ Nossos produtos</h2>
@@ -99,7 +300,8 @@ small{color:#777}
 const WHATSAPP = "5511970218569";
 const TAXA = 1.25;
 
-// Valores-base ilustrativos; o preço exibido recebe acréscimo de 25%.
+// Produtos e valores-base ilustrativos.
+// O preço anunciado recebe acréscimo de 25%.
 const produtos = [
 {id:1,nome:"Perfume Importado Club de Nuit",cat:"Perfumes",base:220,img:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80"},
 {id:2,nome:"Perfume Importado Feminino",cat:"Perfumes",base:180,img:"https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"},
@@ -146,157 +348,285 @@ const produtos = [
 let categoriaAtual = "Todos";
 let carrinho = JSON.parse(localStorage.getItem("japaCarrinho") || "[]");
 
-function moeda(valor){
-  return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function moeda(valor) {
+  return valor.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
 }
-function preco(p){
-  return Math.round(p.base*TAXA*100)/100;
+
+function preco(p) {
+  return Math.round(p.base * TAXA * 100) / 100;
 }
-function salvarCarrinho(){
-  localStorage.setItem("japaCarrinho",JSON.stringify(carrinho));
+
+function salvarCarrinho() {
+  localStorage.setItem("japaCarrinho", JSON.stringify(carrinho));
   atualizarContador();
 }
-function atualizarContador(){
+
+function atualizarContador() {
   document.getElementById("cartCount").textContent =
-    carrinho.reduce((s,i)=>s+i.qtd,0);
+    carrinho.reduce((s, i) => s + i.qtd, 0);
 }
-function montarCategorias(){
-  const cats=["Todos",...new Set(produtos.map(p=>p.cat))];
-  document.getElementById("categories").innerHTML=cats.map(c=>
-    `<button class="${c===categoriaAtual?"active":""}" onclick="selecionarCategoria('${c}')">${c}</button>`
+
+function montarCategorias() {
+  const cats = ["Todos", ...new Set(produtos.map(p => p.cat))];
+  document.getElementById("categories").innerHTML = cats.map(c =>
+    `<button class="${c === categoriaAtual ? "active" : ""}"
+      onclick="selecionarCategoria('${c}')">${c}</button>`
   ).join("");
 }
-function selecionarCategoria(c){
-  categoriaAtual=c;
+
+function selecionarCategoria(c) {
+  categoriaAtual = c;
   montarCategorias();
   renderizar();
 }
-function renderizar(){
-  const busca=document.getElementById("search").value.toLowerCase();
-  const lista=produtos.filter(p=>
-    (categoriaAtual==="Todos"||p.cat===categoriaAtual)&&
-    p.nome.toLowerCase().includes(busca)
-  );
-  document.getElementById("productCount").textContent=lista.length+" produtos";
-  document.getElementById("products").innerHTML=lista.map(p=>`
+
+function criarCard(p, destaque = false) {
+  return `
     <article class="card">
       <img src="${p.img}" alt="${p.nome}" loading="lazy"
         onerror="this.onerror=null;this.src='https://placehold.co/600x400/eee/333?text=JAPA+IMPORT'">
       <div class="card-content">
+        ${destaque ? '<span class="selo-barato">💰 MAIS BARATO</span>' : ''}
         <span class="tag">${p.cat}</span>
         <h3>${p.nome}</h3>
         <div class="old">Base: ${moeda(p.base)}</div>
         <div class="price">${moeda(preco(p))}</div>
         <small>Preço com acréscimo de 25%</small>
-        <button class="btn" onclick="adicionar(${p.id})">Adicionar ao carrinho</button>
-        <button class="btn" style="margin-top:7px;background:#222" onclick="consultar(${p.id})">Consultar produto</button>
+        <button class="btn" onclick="adicionar(${p.id})">
+          🛒 Adicionar ao carrinho
+        </button>
+        <button class="btn" style="margin-top:7px;background:#222"
+          onclick="consultar(${p.id})">Consultar produto</button>
       </div>
-    </article>`).join("");
-  if(!lista.length)document.getElementById("products").innerHTML='<p class="empty">Nenhum produto encontrado.</p>';
+    </article>
+  `;
 }
-function adicionar(id){
-  const item=carrinho.find(i=>i.id===id);
-  if(item)item.qtd++;
-  else carrinho.push({id,qtd:1});
+
+function renderizar() {
+  const busca = document.getElementById("search").value.toLowerCase();
+
+  const lista = produtos.filter(p =>
+    (categoriaAtual === "Todos" || p.cat === categoriaAtual) &&
+    p.nome.toLowerCase().includes(busca)
+  );
+
+  document.getElementById("productCount").textContent =
+    lista.length + " produtos";
+
+  document.getElementById("products").innerHTML =
+    lista.map(p => criarCard(p)).join("");
+
+  if (!lista.length) {
+    document.getElementById("products").innerHTML =
+      '<p class="empty">Nenhum produto encontrado.</p>';
+  }
+}
+
+// Mostra automaticamente os 8 produtos de menor preço.
+function renderizarOfertas() {
+  const maisBaratos = [...produtos]
+    .sort((a, b) => preco(a) - preco(b))
+    .slice(0, 8);
+
+  document.getElementById("produtosBaratos").innerHTML =
+    maisBaratos.map(p => criarCard(p, true)).join("");
+}
+
+function adicionar(id) {
+  const item = carrinho.find(i => i.id === id);
+  if (item) item.qtd++;
+  else carrinho.push({ id, qtd: 1 });
+
   salvarCarrinho();
   alert("Produto adicionado ao carrinho!");
 }
-function mostrarCarrinho(){
-  const painel=document.getElementById("cartPanel");
-  painel.hidden=!painel.hidden;
+
+function mostrarCarrinho() {
+  const painel = document.getElementById("cartPanel");
+  painel.hidden = !painel.hidden;
   atualizarCarrinho();
-  if(!painel.hidden)painel.scrollIntoView({behavior:"smooth"});
+
+  if (!painel.hidden) {
+    painel.scrollIntoView({ behavior: "smooth" });
+  }
 }
-function atualizarCarrinho(){
-  const area=document.getElementById("cartItems");
-  if(!carrinho.length){
-    area.innerHTML='<p class="empty">Seu carrinho está vazio.</p>';
-  }else{
-    area.innerHTML=carrinho.map(i=>{
-      const p=produtos.find(p=>p.id===i.id);
-      if(!p)return "";
-      return `<div class="cart-item">
-        <div><strong>${p.nome}</strong><br>${moeda(preco(p))} × ${i.qtd}<br>
-        <strong>${moeda(preco(p)*i.qtd)}</strong></div>
-        <div>
-          <button onclick="mudarQtd(${i.id},-1)">−</button>
-          <button onclick="mudarQtd(${i.id},1)">+</button>
-          <button onclick="remover(${i.id})">🗑️</button>
+
+function atualizarCarrinho() {
+  const area = document.getElementById("cartItems");
+
+  if (!carrinho.length) {
+    area.innerHTML = '<p class="empty">Seu carrinho está vazio.</p>';
+  } else {
+    area.innerHTML = carrinho.map(i => {
+      const p = produtos.find(p => p.id === i.id);
+      if (!p) return "";
+
+      return `
+        <div class="cart-item">
+          <div>
+            <strong>${p.nome}</strong><br>
+            ${moeda(preco(p))} × ${i.qtd}<br>
+            <strong>${moeda(preco(p) * i.qtd)}</strong>
+          </div>
+          <div>
+            <button onclick="mudarQtd(${i.id},-1)">−</button>
+            <button onclick="mudarQtd(${i.id},1)">+</button>
+            <button onclick="remover(${i.id})">🗑️</button>
+          </div>
         </div>
-      </div>`;
+      `;
     }).join("");
   }
-  document.getElementById("cartTotal").textContent=moeda(
-    carrinho.reduce((s,i)=>s+preco(produtos.find(p=>p.id===i.id))*i.qtd,0)
-  );
+
+  const total = carrinho.reduce((s, i) => {
+    const p = produtos.find(p => p.id === i.id);
+    return s + (p ? preco(p) * i.qtd : 0);
+  }, 0);
+
+  document.getElementById("cartTotal").textContent = moeda(total);
 }
-function mudarQtd(id,n){
-  const item=carrinho.find(i=>i.id===id);
-  if(!item)return;
-  item.qtd+=n;
-  if(item.qtd<=0)carrinho=carrinho.filter(i=>i.id!==id);
-  salvarCarrinho();atualizarCarrinho();
+
+function mudarQtd(id, n) {
+  const item = carrinho.find(i => i.id === id);
+  if (!item) return;
+
+  item.qtd += n;
+  if (item.qtd <= 0) {
+    carrinho = carrinho.filter(i => i.id !== id);
+  }
+
+  salvarCarrinho();
+  atualizarCarrinho();
 }
-function remover(id){
-  carrinho=carrinho.filter(i=>i.id!==id);
-  salvarCarrinho();atualizarCarrinho();
+
+function remover(id) {
+  carrinho = carrinho.filter(i => i.id !== id);
+  salvarCarrinho();
+  atualizarCarrinho();
 }
-function limparCarrinho(){
-  if(confirm("Deseja limpar todo o carrinho?")){
-    carrinho=[];salvarCarrinho();atualizarCarrinho();
+
+function limparCarrinho() {
+  if (confirm("Deseja limpar todo o carrinho?")) {
+    carrinho = [];
+    salvarCarrinho();
+    atualizarCarrinho();
   }
 }
-function textoPedido(){
-  if(!carrinho.length)return "";
-  let texto="Olá! Quero fazer um pedido na JAPA IMPORT:%0A%0A";
-  carrinho.forEach(i=>{
-    const p=produtos.find(p=>p.id===i.id);
-    if(p)texto+=`• ${p.nome} - ${i.qtd} un. - ${moeda(preco(p)*i.qtd)}%0A`;
+
+function textoPedido() {
+  if (!carrinho.length) return "";
+
+  let texto = "Olá! Quero fazer um pedido na JAPA IMPORT:\n\n";
+
+  carrinho.forEach(i => {
+    const p = produtos.find(p => p.id === i.id);
+    if (p) {
+      texto += `• ${p.nome} - ${i.qtd} un. - ${moeda(preco(p) * i.qtd)}\n`;
+    }
   });
-  const total=carrinho.reduce((s,i)=>s+preco(produtos.find(p=>p.id===i.id))*i.qtd,0);
-  texto+=`%0A*Total estimado: ${moeda(total)}*%0A`;
-  texto+="Por favor, confirme disponibilidade, preço e entrega.";
+
+  const total = carrinho.reduce((s, i) => {
+    const p = produtos.find(p => p.id === i.id);
+    return s + (p ? preco(p) * i.qtd : 0);
+  }, 0);
+
+  texto += `\nTotal estimado: ${moeda(total)}\n`;
+  texto += "Por favor, confirme disponibilidade, preço e entrega.";
   return texto;
 }
-function finalizarPedido(){
-  if(!carrinho.length){alert("Adicione produtos ao carrinho primeiro.");return;}
-  window.open("https://wa.me/"+WHATSAPP+"?text="+textoPedido(),"_blank");
+
+function finalizarPedido() {
+  if (!carrinho.length) {
+    alert("Adicione produtos ao carrinho primeiro.");
+    return;
+  }
+
+  window.open(
+    "https://wa.me/" + WHATSAPP + "?text=" +
+    encodeURIComponent(textoPedido()),
+    "_blank"
+  );
 }
-function compartilharCarrinho(){
-  if(!carrinho.length){alert("Seu carrinho está vazio.");return;}
-  const dados=btoa(unescape(encodeURIComponent(JSON.stringify(carrinho))));
-  const link=location.origin+location.pathname+"?carrinho="+encodeURIComponent(dados);
-  if(navigator.share){
-    navigator.share({title:"Meu carrinho JAPA IMPORT",text:"Veja meu carrinho:",url:link}).catch(()=>copiarLink(link));
-  }else copiarLink(link);
+
+function compartilharCarrinho() {
+  if (!carrinho.length) {
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  const dados = btoa(unescape(encodeURIComponent(JSON.stringify(carrinho))));
+  const link = location.origin + location.pathname +
+    "?carrinho=" + encodeURIComponent(dados);
+
+  if (navigator.share) {
+    navigator.share({
+      title: "Meu carrinho JAPA IMPORT",
+      text: "Veja meu carrinho:",
+      url: link
+    }).catch(() => copiarLink(link));
+  } else {
+    copiarLink(link);
+  }
 }
-function copiarLink(link){
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(link).then(()=>alert("Link do carrinho copiado! Envie para quem quiser."));
-  }else prompt("Copie e envie este link:",link);
+
+function copiarLink(link) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(link)
+      .then(() => alert("Link do carrinho copiado! Envie para quem quiser."))
+      .catch(() => prompt("Copie e envie este link:", link));
+  } else {
+    prompt("Copie e envie este link:", link);
+  }
 }
-function consultar(id){
-  const p=produtos.find(p=>p.id===id);
-  if(p)window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Olá! Gostaria de consultar o produto "+p.nome+" ("+moeda(preco(p))+"). Está disponível?"),"_blank");
+
+function consultar(id) {
+  const p = produtos.find(p => p.id === id);
+
+  if (p) {
+    const mensagem = `Olá! Gostaria de consultar o produto ${p.nome} (${moeda(preco(p))}). Está disponível?`;
+    window.open(
+      "https://wa.me/" + WHATSAPP + "?text=" +
+      encodeURIComponent(mensagem),
+      "_blank"
+    );
+  }
 }
-function carregarCarrinhoCompartilhado(){
-  const params=new URLSearchParams(location.search);
-  const dados=params.get("carrinho");
-  if(!dados)return;
-  try{
-    const recebidos=JSON.parse(decodeURIComponent(escape(atob(dados))));
-    if(Array.isArray(recebidos)){
-      carrinho=recebidos.filter(i=>produtos.some(p=>p.id===i.id)&&Number(i.qtd)>0);
+
+function carregarCarrinhoCompartilhado() {
+  const params = new URLSearchParams(location.search);
+  const dados = params.get("carrinho");
+  if (!dados) return;
+
+  try {
+    const recebidos = JSON.parse(
+      decodeURIComponent(escape(atob(dados)))
+    );
+
+    if (Array.isArray(recebidos)) {
+      carrinho = recebidos.filter(i =>
+        produtos.some(p => p.id === i.id) &&
+        Number(i.qtd) > 0
+      );
+
       salvarCarrinho();
       atualizarCarrinho();
-      if(carrinho.length){
-        document.getElementById("cartPanel").hidden=false;
+
+      if (carrinho.length) {
+        document.getElementById("cartPanel").hidden = false;
       }
     }
-  }catch(e){console.log("Não foi possível ler o carrinho compartilhado.");}
+  } catch (e) {
+    console.log("Não foi possível ler o carrinho compartilhado.");
+  }
 }
+
+// Inicialização da loja
 montarCategorias();
 renderizar();
+renderizarOfertas();
 atualizarContador();
 atualizarCarrinho();
 carregarCarrinhoCompartilhado();
