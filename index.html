@@ -1,51 +1,542 @@
 
-function criarCard(p, destaque = false) {
-  const fotosProduto = p.imagens || p.imgs || [p.imagem || p.img];
-  const indice = p._fotoAtual || 0;
-  const foto = fotosProduto[indice] || fotosProduto[0];
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAPA IMPORT | Sua loja online</title>
+<meta name="description" content="JAPA IMPORT: perfumes, celulares, eletrônicos e produtos para casa.">
+
+<style>
+:root {
+  --blue:#1748ff;
+  --purple:#792cff;
+  --dark:#101126;
+  --light:#f5f5ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,sans-serif;
+  background:var(--light);color:#191932
+}
+header{
+  background:linear-gradient(120deg,#11143c,#1748ff,#792cff);
+  color:white;padding:25px 5%
+}
+.top{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;flex-wrap:wrap
+}
+.logo{font-size:28px;font-weight:900;letter-spacing:1px}
+.logo span{color:#a8d7ff}
+header p{margin:8px 0 20px;color:#e4e7ff}
+.search{
+  width:100%;padding:14px;border:0;
+  border-radius:12px;font-size:16px
+}
+nav{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+nav button,.btn{
+  border:0;padding:11px 15px;border-radius:10px;
+  cursor:pointer;font-weight:bold
+}
+nav button{background:#ffffff20;color:white}
+nav button.active,nav button:hover{background:white;color:#3022c7}
+.btn{background:linear-gradient(110deg,var(--blue),var(--purple));color:white}
+.hero{
+  margin:22px auto;padding:32px 5%;
+  background:linear-gradient(120deg,#e6eaff,#f3e5ff);
+  border-radius:20px;max-width:1400px
+}
+.hero h1{font-size:clamp(27px,4vw,44px);margin:0 0 12px;color:#17174b}
+.hero p{line-height:1.6}
+main{max-width:1400px;margin:auto;padding:0 5% 40px}
+.section-title{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:10px;flex-wrap:wrap
+}
+.products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px
+}
+.card{
+  background:white;border-radius:17px;overflow:hidden;
+  box-shadow:0 5px 20px #1a1a4810;
+  display:flex;flex-direction:column;min-width:0
+}
+.galeria-produto{position:relative;background:#f0efff;overflow:hidden}
+.galeria-produto img{
+  display:block;width:100%;height:190px;
+  object-fit:contain;padding:8px
+}
+.controles-foto{
+  position:absolute;left:0;right:0;top:50%;
+  display:flex;justify-content:space-between;padding:0 8px;
+  transform:translateY(-50%);pointer-events:none
+}
+.controles-foto button{
+  pointer-events:auto;border:0;border-radius:50%;
+  width:34px;height:34px;background:#ffffffed;
+  color:#3022c7;font-size:22px;font-weight:bold;cursor:pointer
+}
+.indicador-foto{
+  position:absolute;bottom:8px;left:50%;
+  transform:translateX(-50%);background:#11143ccc;
+  color:white;padding:4px 9px;border-radius:12px;font-size:11px
+}
+.card-content{padding:15px;display:flex;flex-direction:column;flex:1}
+.tag{font-size:11px;color:#6c38db;font-weight:bold;text-transform:uppercase}
+.card h3{font-size:16px;line-height:1.4;min-height:44px;margin:9px 0}
+.price{font-size:23px;color:#4528d9;font-weight:900}
+.old{color:#888;font-size:13px;margin:8px 0}
+.card .btn{margin-top:13px;width:100%}
+.ofertas-section{
+  margin:25px 0 35px;padding:22px;border-radius:20px;
+  background:linear-gradient(135deg,#fff3d6,#ffe4ef);
+  border:2px solid #ffd36a
+}
+.ofertas-titulo{color:#713b00;font-size:25px;margin:0 0 8px}
+.ofertas-descricao{color:#6b4b32;margin-bottom:20px}
+.selo-barato{
+  display:inline-block;background:#e5ffe9;color:#08752c;
+  border:1px solid #a5eab5;border-radius:7px;padding:6px 9px;
+  font-size:12px;font-weight:800;margin-bottom:8px
+}
+#cartPanel{
+  background:white;padding:22px;border-radius:17px;
+  margin:25px 0;box-shadow:0 5px 20px #1a1a4810
+}
+.cart-item{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;border-bottom:1px solid #eee;padding:12px 0
+}
+.cart-item button{border:0;border-radius:7px;padding:7px;cursor:pointer}
+.cart-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.empty{padding:25px;text-align:center;color:#777}
+footer{text-align:center;background:#11143c;color:white;padding:25px}
+footer small{color:#ddd}
+@media(max-width:480px){
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .galeria-produto img{height:135px}
+  .card-content{padding:10px}
+  .card h3{font-size:14px}
+  .price{font-size:18px}
+  .logo{font-size:23px}
+  .ofertas-section{padding:12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="logo">JAPA <span>IMPORT</span></div>
+    <button class="btn" onclick="mostrarCarrinho()">
+      🛒 Carrinho (<span id="cartCount">0</span>)
+    </button>
+  </div>
+  <p>Encontre perfumes, celulares, eletrônicos e muito mais!</p>
+  <input class="search" id="search" placeholder="🔎 Buscar produtos..." oninput="renderizar()">
+  <nav id="categories"></nav>
+</header>
+
+<section class="hero">
+  <h1>Seu próximo produto está aqui!</h1>
+  <p>✨ Variedade de produtos, ofertas e novidades para você.<br>
+  🛍️ Escolha seus produtos e envie seu pedido pelo WhatsApp.</p>
+  <button class="btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+    Ver produtos
+  </button>
+</section>
+
+<main>
+  <section id="cartPanel" hidden>
+    <div class="section-title">
+      <h2>🛒 Meu carrinho</h2>
+      <button class="btn" onclick="mostrarCarrinho()">Fechar</button>
+    </div>
+    <div id="cartItems"></div>
+    <h3>Total: <span id="cartTotal">R$ 0,00</span></h3>
+    <div class="cart-actions">
+      <button class="btn" onclick="finalizarPedido()">📲 Finalizar pelo WhatsApp</button>
+      <button class="btn" onclick="compartilharCarrinho()">🔗 Compartilhar carrinho</button>
+      <button class="btn" onclick="limparCarrinho()">Limpar carrinho</button>
+    </div>
+    <small>O pedido será enviado para confirmação pelo WhatsApp.</small>
+  </section>
+
+  <section class="ofertas-section" id="ofertas">
+    <h2 class="ofertas-titulo">💰 Os mais baratos da loja</h2>
+    <p class="ofertas-descricao">Confira os produtos de menor preço.</p>
+    <div class="products" id="produtosBaratos"></div>
+  </section>
+
+  <section id="catalogo">
+    <div class="section-title">
+      <h2>🛍️ Nossos produtos</h2>
+      <span id="productCount"></span>
+    </div>
+    <div class="products" id="products"></div>
+  </section>
+</main>
+
+<footer>
+  <h2>JAPA IMPORT</h2>
+  <p>Perfumes • Celulares • Eletrônicos • Casa e cozinha</p>
+  <p>Faça seu pedido pelo WhatsApp: (11) 97021-8569</p>
+  <small>Imagens ilustrativas. Preços e disponibilidade sujeitos à confirmação.</small>
+</footer>
+
+<script>
+const WHATSAPP = "5511970218569";
+const TAXA = 1.25;
+
+const fotos = {
+  perfumes: [
+    "https://images.unsplash.com/photo-1541643600914-78b084683601?w=700",
+    "https://images.unsplash.com/photo-1594035910387-fea47794261f?w=700",
+    "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700"
+  ],
+  celulares: [
+    "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700",
+    "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=700",
+    "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=700"
+  ],
+  eletronicos: [
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700",
+    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=700",
+    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=700"
+  ],
+  eletrodomesticos: [
+    "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=700",
+    "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700",
+    "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=700"
+  ],
+  casa: [
+    "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=700",
+    "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=700",
+    "https://images.unsplash.com/photo-1584990347449-a7f7d1f2e6a9?w=700"
+  ]
+};
+
+const produtos = [
+  {id:1,nome:"Lancôme La Vie Est Belle EDP 100ml",cat:"Perfumes",base:380,imgs:fotos.perfumes},
+  {id:2,nome:"Club de Nuit Intense Man",cat:"Perfumes",base:250,imgs:fotos.perfumes},
+  {id:3,nome:"Dior Sauvage Eau de Toilette",cat:"Perfumes",base:490,imgs:fotos.perfumes},
+  {id:4,nome:"Versace Dylan Blue",cat:"Perfumes",base:360,imgs:fotos.perfumes},
+  {id:5,nome:"Paco Rabanne 1 Million",cat:"Perfumes",base:420,imgs:fotos.perfumes},
+  {id:6,nome:"Carolina Herrera Good Girl",cat:"Perfumes",base:430,imgs:fotos.perfumes},
+  {id:7,nome:"Lattafa Eclaire 100ml",cat:"Perfumes",base:135,imgs:fotos.perfumes},
+  {id:8,nome:"Lattafa Khamrah",cat:"Perfumes",base:180,imgs:fotos.perfumes},
+  {id:9,nome:"Yves Saint Laurent Y",cat:"Perfumes",base:450,imgs:fotos.perfumes},
+  {id:10,nome:"Armani Acqua di Giò",cat:"Perfumes",base:420,imgs:fotos.perfumes},
+
+  {id:11,nome:"Apple iPhone 17 Pro Max 256GB",cat:"Celulares",base:6400,imgs:fotos.celulares},
+  {id:12,nome:"Apple iPhone 17 256GB",cat:"Celulares",base:5000,imgs:fotos.celulares},
+  {id:13,nome:"Apple iPhone 16 128GB",cat:"Celulares",base:4100,imgs:fotos.celulares},
+  {id:14,nome:"Samsung Galaxy S25",cat:"Celulares",base:3900,imgs:fotos.celulares},
+  {id:15,nome:"Samsung Galaxy A56 5G",cat:"Celulares",base:1900,imgs:fotos.celulares},
+  {id:16,nome:"Xiaomi Redmi Note 14",cat:"Celulares",base:1250,imgs:fotos.celulares},
+  {id:17,nome:"Motorola Edge 60",cat:"Celulares",base:2200,imgs:fotos.celulares},
+  {id:18,nome:"Xiaomi Poco X7 Pro",cat:"Celulares",base:2100,imgs:fotos.celulares},
+  {id:19,nome:"Samsung Galaxy A26 5G",cat:"Celulares",base:1350,imgs:fotos.celulares},
+  {id:20,nome:"Apple iPhone 15 128GB",cat:"Celulares",base:3300,imgs:fotos.celulares},
+
+  {id:21,nome:"Sony PlayStation 5 Pro 2TB",cat:"Eletrônicos",base:6100,imgs:fotos.eletronicos},
+  {id:22,nome:"Microsoft Xbox Series S 1TB",cat:"Eletrônicos",base:3050,imgs:fotos.eletronicos},
+  {id:23,nome:"Nintendo Switch 2",cat:"Eletrônicos",base:2800,imgs:fotos.eletronicos},
+  {id:24,nome:"Apple iPad 11ª geração 128GB",cat:"Eletrônicos",base:2300,imgs:fotos.eletronicos},
+  {id:25,nome:"Apple MacBook Air M5 512GB",cat:"Eletrônicos",base:6750,imgs:fotos.eletronicos},
+  {id:26,nome:"Fone Bluetooth premium",cat:"Eletrônicos",base:180,imgs:fotos.eletronicos},
+  {id:27,nome:"Caixa de som Bluetooth",cat:"Eletrônicos",base:220,imgs:fotos.eletronicos},
+  {id:28,nome:"Smartwatch esportivo",cat:"Eletrônicos",base:250,imgs:fotos.eletronicos},
+  {id:29,nome:"Power bank portátil USB-C",cat:"Eletrônicos",base:120,imgs:fotos.eletronicos},
+  {id:30,nome:"Controle sem fio para videogame",cat:"Eletrônicos",base:280,imgs:fotos.eletronicos},
+
+  {id:31,nome:"Robô aspirador Xiaomi H50 Pro",cat:"Eletrodomésticos",base:2200,imgs:fotos.eletrodomesticos},
+  {id:32,nome:"Robô aspirador Xiaomi X20+",cat:"Eletrodomésticos",base:2250,imgs:fotos.eletrodomesticos},
+  {id:33,nome:"Air Fryer digital",cat:"Eletrodomésticos",base:380,imgs:fotos.eletrodomesticos},
+  {id:34,nome:"Liquidificador potente",cat:"Eletrodomésticos",base:180,imgs:fotos.eletrodomesticos},
+  {id:35,nome:"Cafeteira elétrica",cat:"Eletrodomésticos",base:220,imgs:fotos.eletrodomesticos},
+  {id:36,nome:"Batedeira de cozinha",cat:"Eletrodomésticos",base:260,imgs:fotos.eletrodomesticos},
+  {id:37,nome:"Sanduicheira elétrica",cat:"Eletrodomésticos",base:110,imgs:fotos.eletrodomesticos},
+  {id:38,nome:"Aspirador de pó portátil",cat:"Eletrodomésticos",base:240,imgs:fotos.eletrodomesticos},
+  {id:39,nome:"Ventilador de mesa",cat:"Eletrodomésticos",base:150,imgs:fotos.eletrodomesticos},
+  {id:40,nome:"Panela elétrica multifuncional",cat:"Eletrodomésticos",base:230,imgs:fotos.eletrodomesticos},
+
+  {id:41,nome:"Jogo de panelas antiaderentes",cat:"Casa e cozinha",base:290,imgs:fotos.casa},
+  {id:42,nome:"Garrafa térmica",cat:"Casa e cozinha",base:80,imgs:fotos.casa},
+  {id:43,nome:"Conjunto de utensílios de cozinha",cat:"Casa e cozinha",base:90,imgs:fotos.casa},
+  {id:44,nome:"Jogo de copos",cat:"Casa e cozinha",base:65,imgs:fotos.casa},
+  {id:45,nome:"Organizadores para cozinha",cat:"Casa e cozinha",base:70,imgs:fotos.casa},
+  {id:46,nome:"Balança digital de cozinha",cat:"Casa e cozinha",base:75,imgs:fotos.casa},
+  {id:47,nome:"Luminária decorativa",cat:"Casa e cozinha",base:100,imgs:fotos.casa},
+  {id:48,nome:"Mochila para notebook",cat:"Casa e cozinha",base:150,imgs:fotos.casa},
+  {id:49,nome:"Kit de potes herméticos",cat:"Casa e cozinha",base:85,imgs:fotos.casa},
+  {id:50,nome:"Suporte ajustável para celular",cat:"Casa e cozinha",base:45,imgs:fotos.casa}
+];
+
+let categoriaAtual = "Todos";
+let carrinho = JSON.parse(localStorage.getItem("japaCarrinho") || "[]");
+
+function moeda(valor) {
+  return Number(valor).toLocaleString("pt-BR", {
+    style:"currency",currency:"BRL"
+  });
+}
+
+function preco(p) {
+  return Math.round(Number(p.base ?? p.preco ?? 0) * TAXA * 100) / 100;
+}
+
+function fotosDoProduto(p) {
+  return p.imagens || p.imgs || [p.imagem || p.img].filter(Boolean);
+}
+
+function salvarCarrinho() {
+  localStorage.setItem("japaCarrinho",JSON.stringify(carrinho));
+  atualizarContador();
+}
+
+function atualizarContador() {
+  document.getElementById("cartCount").textContent =
+    carrinho.reduce((s,i)=>s+i.qtd,0);
+}
+
+function montarCategorias() {
+  const cats = ["Todos",...new Set(produtos.map(p=>p.cat || p.categoria))];
+  document.getElementById("categories").innerHTML = cats.map(c=>
+    `<button class="${c===categoriaAtual?"active":""}"
+    onclick="selecionarCategoria('${c}')">${c}</button>`
+  ).join("");
+}
+
+function selecionarCategoria(c) {
+  categoriaAtual=c;
+  montarCategorias();
+  renderizar();
+  document.getElementById("catalogo").scrollIntoView({behavior:"smooth"});
+}
+
+function criarCard(p,destaque=false) {
+  const fotosProduto=fotosDoProduto(p);
+  const indice=p._fotoAtual || 0;
+  const foto=fotosProduto[indice] || fotosProduto[0] || "";
+  const categoria=p.cat || p.categoria || "Produtos";
 
   return `
-    <article class="card">
-      <div class="galeria-produto">
-        <img id="foto-${p.id}"
-          src="${foto}"
-          alt="${p.nome} - foto ${indice + 1}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='https://placehold.co/600x400/eee/333?text=JAPA+IMPORT'">
-
-        ${fotosProduto.length > 1 ? `
-          <div class="controles-foto">
-            <button type="button"
-              aria-label="Foto anterior"
-              onclick="trocarFoto(${p.id},-1)">‹</button>
-            <button type="button"
-              aria-label="Próxima foto"
-              onclick="trocarFoto(${p.id},1)">›</button>
-          </div>
-          <span class="indicador-foto" id="contador-foto-${p.id}">
-            ${indice + 1}/${fotosProduto.length}
-          </span>
-        ` : ""}
+  <article class="card">
+    <div class="galeria-produto">
+      <img id="foto-${p.id}" src="${foto}"
+        alt="${p.nome} - foto ${indice+1}" loading="lazy"
+        onerror="this.onerror=null;this.src='https://placehold.co/600x400/eee/333?text=JAPA+IMPORT'">
+      ${fotosProduto.length>1?`
+      <div class="controles-foto">
+        <button type="button" aria-label="Foto anterior"
+          onclick="trocarFoto(${p.id},-1)">‹</button>
+        <button type="button" aria-label="Próxima foto"
+          onclick="trocarFoto(${p.id},1)">›</button>
       </div>
-
-      <div class="card-content">
-        ${destaque ? '<span class="selo-barato">💰 MAIS BARATO</span>' : ""}
-        <span class="tag">${p.cat || p.categoria || ""}</span>
-        <h3>${p.nome}</h3>
-        <div class="old">Valor de referência: ${moeda(p.base ?? p.preco)}</div>
-        <div class="price">${moeda(preco(p))}</div>
-        <small>Preço estimado; confirme disponibilidade.</small>
-
-        <button class="btn" onclick="adicionar(${p.id})">
-          🛒 Adicionar ao carrinho
-        </button>
-
-        <button class="btn"
-          style="margin-top:7px;background:#222"
-          onclick="consultar(${p.id})">
-          Consultar produto
-        </button>
-      </div>
-    </article>
-  `;
+      <span class="indicador-foto" id="contador-foto-${p.id}">
+        ${indice+1}/${fotosProduto.length}
+      </span>`:""}
+    </div>
+    <div class="card-content">
+      ${destaque?'<span class="selo-barato">💰 MAIS BARATO</span>':""}
+      <span class="tag">${categoria}</span>
+      <h3>${p.nome}</h3>
+      <div class="old">Valor de referência: ${moeda(p.base ?? p.preco)}</div>
+      <div class="price">${moeda(preco(p))}</div>
+      <small>Preço estimado; confirme disponibilidade.</small>
+      <button class="btn" onclick="adicionar(${p.id})">🛒 Adicionar ao carrinho</button>
+      <button class="btn" style="margin-top:7px;background:#222"
+        onclick="consultar(${p.id})">Consultar produto</button>
+    </div>
+  </article>`;
 }
+
+function trocarFoto(id,direcao) {
+  const p=produtos.find(item=>item.id===id);
+  if(!p)return;
+  const fotosProduto=fotosDoProduto(p);
+  if(fotosProduto.length<2)return;
+
+  p._fotoAtual=((p._fotoAtual||0)+direcao+fotosProduto.length)%fotosProduto.length;
+  const imagem=document.getElementById("foto-"+id);
+  const contador=document.getElementById("contador-foto-"+id);
+
+  if(imagem){
+    imagem.src=fotosProduto[p._fotoAtual];
+    imagem.alt=p.nome+" - foto "+(p._fotoAtual+1);
+  }
+  if(contador)contador.textContent=(p._fotoAtual+1)+"/"+fotosProduto.length;
+}
+
+function renderizar() {
+  const busca=document.getElementById("search").value.trim().toLocaleLowerCase("pt-BR");
+  const lista=produtos.filter(p=>
+    (categoriaAtual==="Todos"||(p.cat||p.categoria)===categoriaAtual)&&
+    p.nome.toLocaleLowerCase("pt-BR").includes(busca)
+  );
+  document.getElementById("productCount").textContent=
+    lista.length+(lista.length===1?" produto":" produtos");
+  document.getElementById("products").innerHTML=lista.length?
+    lista.map(p=>criarCard(p)).join(""):
+    '<p class="empty">Nenhum produto encontrado.</p>';
+}
+
+function renderizarOfertas() {
+  const lista=[...produtos].sort((a,b)=>preco(a)-preco(b)).slice(0,8);
+  document.getElementById("produtosBaratos").innerHTML=
+    lista.map(p=>criarCard(p,true)).join("");
+}
+
+function adicionar(id) {
+  const item=carrinho.find(i=>i.id===id);
+  if(item)item.qtd++;
+  else carrinho.push({id,qtd:1});
+  salvarCarrinho();
+  atualizarCarrinho();
+  alert("Produto adicionado ao carrinho!");
+}
+
+function mostrarCarrinho() {
+  const painel=document.getElementById("cartPanel");
+  painel.hidden=!painel.hidden;
+  atualizarCarrinho();
+  if(!painel.hidden)painel.scrollIntoView({behavior:"smooth"});
+}
+
+function atualizarCarrinho() {
+  const area=document.getElementById("cartItems");
+  if(!carrinho.length){
+    area.innerHTML='<p class="empty">Seu carrinho está vazio.</p>';
+  }else{
+    area.innerHTML=carrinho.map(i=>{
+      const p=produtos.find(p=>p.id===i.id);
+      if(!p)return "";
+      return `<div class="cart-item">
+        <div><strong>${p.nome}</strong><br>${moeda(preco(p))} × ${i.qtd}<br>
+        <strong>${moeda(preco(p)*i.qtd)}</strong></div>
+        <div><button onclick="mudarQtd(${i.id},-1)">−</button>
+        <button onclick="mudarQtd(${i.id},1)">+</button>
+        <button onclick="remover(${i.id})">🗑️</button></div>
+      </div>`;
+    }).join("");
+  }
+  const total=carrinho.reduce((s,i)=>{
+    const p=produtos.find(p=>p.id===i.id);
+    return s+(p?preco(p)*i.qtd:0);
+  },0);
+  document.getElementById("cartTotal").textContent=moeda(total);
+}
+
+function mudarQtd(id,n) {
+  const item=carrinho.find(i=>i.id===id);
+  if(!item)return;
+  item.qtd+=n;
+  if(item.qtd<=0)carrinho=carrinho.filter(i=>i.id!==id);
+  salvarCarrinho();
+  atualizarCarrinho();
+}
+
+function remover(id) {
+  carrinho=carrinho.filter(i=>i.id!==id);
+  salvarCarrinho();
+  atualizarCarrinho();
+}
+
+function limparCarrinho() {
+  if(confirm("Deseja limpar todo o carrinho?")){
+    carrinho=[];
+    salvarCarrinho();
+    atualizarCarrinho();
+  }
+}
+
+function textoPedido() {
+  if(!carrinho.length)return "";
+  let texto="Olá! Quero fazer um pedido na JAPA IMPORT:\n\n";
+  carrinho.forEach(i=>{
+    const p=produtos.find(p=>p.id===i.id);
+    if(p)texto+=`• ${p.nome} - ${i.qtd} un. - ${moeda(preco(p)*i.qtd)}\n`;
+  });
+  const total=carrinho.reduce((s,i)=>{
+    const p=produtos.find(p=>p.id===i.id);
+    return s+(p?preco(p)*i.qtd:0);
+  },0);
+  texto+=`\nTotal estimado: ${moeda(total)}\n`;
+  texto+="Por favor, confirme disponibilidade, preço e entrega.";
+  return texto;
+}
+
+function finalizarPedido() {
+  if(!carrinho.length){
+    alert("Adicione produtos ao carrinho primeiro.");
+    return;
+  }
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(textoPedido()),"_blank");
+}
+
+function compartilharCarrinho() {
+  if(!carrinho.length){
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+  const dados=btoa(unescape(encodeURIComponent(JSON.stringify(carrinho))));
+  const link=location.origin+location.pathname+"?carrinho="+encodeURIComponent(dados);
+
+  if(navigator.share){
+    navigator.share({
+      title:"Meu carrinho JAPA IMPORT",
+      text:"Veja meu carrinho:",
+      url:link
+    }).catch(()=>copiarLink(link));
+  }else copiarLink(link);
+}
+
+function copiarLink(link) {
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(link)
+      .then(()=>alert("Link do carrinho copiado! Envie para quem quiser."))
+      .catch(()=>prompt("Copie e envie este link:",link));
+  }else prompt("Copie e envie este link:",link);
+}
+
+function consultar(id) {
+  const p=produtos.find(p=>p.id===id);
+  if(!p)return;
+  const mensagem=`Olá! Gostaria de consultar o produto ${p.nome} (${moeda(preco(p))}). Está disponível?`;
+  window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),"_blank");
+}
+
+function carregarCarrinhoCompartilhado() {
+  const dados=new URLSearchParams(location.search).get("carrinho");
+  if(!dados)return;
+  try{
+    const recebidos=JSON.parse(decodeURIComponent(escape(atob(dados))));
+    if(!Array.isArray(recebidos))return;
+    carrinho=recebidos.filter(i=>
+      Number.isInteger(Number(i.id))&&
+      produtos.some(p=>p.id===Number(i.id))&&
+      Number.isInteger(Number(i.qtd))&&Number(i.qtd)>0&&Number(i.qtd)<=99
+    ).map(i=>({id:Number(i.id),qtd:Number(i.qtd)}));
+    salvarCarrinho();
+    atualizarCarrinho();
+    if(carrinho.length){
+      document.getElementById("cartPanel").hidden=false;
+      document.getElementById("cartPanel").scrollIntoView({behavior:"smooth"});
+    }
+  }catch(e){
+    console.error("Não foi possível ler o carrinho compartilhado.",e);
+    alert("Não foi possível abrir este carrinho compartilhado.");
+  }
+}
+
+montarCategorias();
+renderizar();
+renderizarOfertas();
+atualizarContador();
+atualizarCarrinho();
+carregarCarrinhoCompartilhado();
+</script>
+</body>
+</html>
